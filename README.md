@@ -12,6 +12,8 @@
 * [Details Api](https://developers.google.com/youtube/v3/docs/videos) TO fetch video details ie. duration
 
 ### App Features
+* Recommended [App Architecture](https://developer.android.com/jetpack/guide)for android development with repository patten.
+
 
 
  
