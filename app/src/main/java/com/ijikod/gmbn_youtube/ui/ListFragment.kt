@@ -5,22 +5,106 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.core.view.isVisible
+import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
+import androidx.paging.LoadState
+import com.ijikod.gmbn_youtube.Injection
 import com.ijikod.gmbn_youtube.R
+import com.ijikod.gmbn_youtube.databinding.FragmentListBinding
+import com.ijikod.gmbn_youtube.vm.VideosListViewModel
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 
 /**
  * [Fragment] class to display video list
  */
 class ListFragment : Fragment() {
 
+    private lateinit var binding: FragmentListBinding
+    private val adapter = ViewListAdapter()
+    private lateinit var viewModel : VideosListViewModel
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        // get the view model
+        viewModel = ViewModelProvider(this, Injection.provideViewModelFactory())
+            .get(VideosListViewModel::class.java)
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_list, container, false)
+        //Initiate view binding
+         binding = DataBindingUtil.inflate(inflater,R.layout.fragment_list, container, false)
+
+        initAdapter()
+        loadData()
+        initRefreshView()
+
+        return  binding.root
     }
-}
+
+    /**
+     * Setup list adapter to load list data with paging data
+     * Also to with load state footer implementation
+     * **/
+    private fun initAdapter(){
+        binding.videoList.adapter = adapter
+        binding.videoList.adapter = adapter.withLoadStateFooter(footer = LoadingStateAdapter{
+            adapter.retry()
+        })
+
+
+        /**
+         * Show list and error message based on adaptor load state
+         * **/
+        adapter.addLoadStateListener {
+            binding.videoList.isVisible = it.source.refresh is LoadState.NotLoading
+
+            binding.progressBar.isVisible = it.source.refresh is LoadState.Loading
+
+            binding.retryButton.isVisible = it.source.refresh is LoadState.Error
+
+
+            val error = it.source.append as? LoadState.Error
+                ?: it.source.prepend as? LoadState.Error
+                ?: it.append as? LoadState.Error
+                ?: it.prepend as? LoadState.Error
+
+            error?.let {
+                Toast.makeText(requireActivity(), "${it.error}", Toast.LENGTH_LONG).show()
+            }
+
+        }
+    }
+
+    /** Load initial Paging Data **/
+    @OptIn(ExperimentalCoroutinesApi::class)
+    private fun loadData(){
+        lifecycleScope.launch {
+            binding.videoList.visibility = View.VISIBLE
+            viewModel.fetchVideos().collectLatest {
+                adapter.submitData(it)
+            }
+        }
+    }
+
+
+
+
+    /**
+     * Setup to handle refreshView actions
+     * **/
+    private fun initRefreshView() {
+        binding.retryButton.setOnClickListener {
+            binding.videoList.scrollToPosition(0)
+            adapter.retry()
+        }
+    }
+    }
