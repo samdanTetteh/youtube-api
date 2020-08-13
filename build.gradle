@@ -30,8 +30,9 @@ ext{
     room_version = '2.2.5'
     nav_version = '2.3.0-beta01'
     glide_version = '4.11.0'
-    paging_version = '2.1.0-alpha01'
     retrofit_version = '2.6.0'
     coroutines_verion = '1.2.1'
-    view_model_version = '2.0.0'
+    life_cycle_version = '2.2.0'
+    core_version = '1.3.0'
+    paging_version = '3.0.0-alpha03'
 }

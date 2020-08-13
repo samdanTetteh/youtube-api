@@ -2,5 +2,6 @@
     <string name="app_name">GMBN Videos</string>
     <string name="loading_txt">loading...</string>
     <string name="video_img">video_image</string>
+    <string name="retry">Oops... Retry?</string>
 
 </resources>

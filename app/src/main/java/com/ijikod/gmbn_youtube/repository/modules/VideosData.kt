@@ -1,8 +1,8 @@
 package com.ijikod.gmbn_youtube.repository.modules
 /**
- * Data Module to hold [Videos] list data
+ * Data Module to hold [VideosData] list data
  * **/
-data class Videos (
+data class VideosData (
     val kind: String,
     val etag: String,
     val nextPageToken: String,
