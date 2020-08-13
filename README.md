@@ -9,10 +9,12 @@
 ### Api Documantation
 * [Search Api](https://developers.google.com/youtube/v3/docs/videos) To list vidoes from channel
 * [Comments Api](https://developers.google.com/youtube/v3/docs/commentThreads) To get list of vidoe comments authurs
-* [Details Api](https://developers.google.com/youtube/v3/docs/videos) TO fetch video details ie. duration
+* [Details Api](https://developers.google.com/youtube/v3/docs/videos) To fetch video details ie. duration
 
 ### App Features
 * Recommended [App Architecture](https://developer.android.com/jetpack/guide)for android development with repository patten.
+* Displaying paging data with new [Android Paging 3.0](https://developer.android.com/topic/libraries/architecture/paging/v3-overview) 
+
 
 
 
