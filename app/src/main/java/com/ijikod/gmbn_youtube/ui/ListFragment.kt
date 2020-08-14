@@ -10,12 +10,16 @@ import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.paging.LoadState
 import com.ijikod.gmbn_youtube.Injection
 import com.ijikod.gmbn_youtube.R
 import com.ijikod.gmbn_youtube.databinding.FragmentListBinding
+import com.ijikod.gmbn_youtube.data.modules.Item
+import com.ijikod.gmbn_youtube.vm.VideoDetailsViewModel
 import com.ijikod.gmbn_youtube.vm.VideosListViewModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
@@ -25,15 +29,21 @@ import kotlinx.coroutines.launch
 class ListFragment : Fragment() {
 
     private lateinit var binding: FragmentListBinding
-    private val adapter = ViewListAdapter()
+    private lateinit var adapter: VideoListAdapter
     private lateinit var viewModel : VideosListViewModel
+    private lateinit var sharedViewModel : VideoDetailsViewModel
+
+    private lateinit var listener : VideoListAdapter.VideoOnclick
+
+    private var fetchVideosJob: Job? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         // get the view model
-        viewModel = ViewModelProvider(this, Injection.provideViewModelFactory())
+        viewModel = ViewModelProvider(requireActivity(), Injection.provideViewModelFactory(requireActivity()))
             .get(VideosListViewModel::class.java)
+
     }
 
     override fun onCreateView(
@@ -55,6 +65,23 @@ class ListFragment : Fragment() {
      * Also to with load state footer implementation
      * **/
     private fun initAdapter(){
+
+        /**
+         * Click listener to navigate to [DetailsFragment]
+         * **/
+        listener = object :VideoListAdapter.VideoOnclick{
+            override fun click(video: Item) {
+
+                sharedViewModel = ViewModelProvider(requireActivity(), Injection.provideViewModelFactory(requireActivity()))
+                    .get(VideoDetailsViewModel::class.java)
+
+                sharedViewModel.setSelectedVideo(video)
+                val action = ListFragmentDirections.actionListFragmentToDetailsFragment()
+                findNavController().navigate(action)
+            }
+        }
+
+        adapter = VideoListAdapter(listener)
         binding.videoList.adapter = adapter
         binding.videoList.adapter = adapter.withLoadStateFooter(footer = LoadingStateAdapter{
             adapter.retry()
@@ -87,15 +114,15 @@ class ListFragment : Fragment() {
     /** Load initial Paging Data **/
     @OptIn(ExperimentalCoroutinesApi::class)
     private fun loadData(){
-        lifecycleScope.launch {
+        // Make sure we cancel the previous job before creating a new one
+        fetchVideosJob?.cancel()
+        fetchVideosJob = lifecycleScope.launch {
             binding.videoList.visibility = View.VISIBLE
             viewModel.fetchVideos().collectLatest {
                 adapter.submitData(it)
             }
         }
     }
-
-
 
 
     /**
@@ -107,4 +134,4 @@ class ListFragment : Fragment() {
             adapter.retry()
         }
     }
-    }
+}

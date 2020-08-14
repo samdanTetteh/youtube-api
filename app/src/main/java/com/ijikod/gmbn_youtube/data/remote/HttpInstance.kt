@@ -1,11 +1,11 @@
-package com.ijikod.gmbn_youtube.repository.remote
+package com.ijikod.gmbn_youtube.data.remote
 
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 
 
 const val CHANNEL_ID = "UC_A--fhX5gea0i4UtpD99Gg"
-const val API_KEY = "AIzaSyAIFsPu_nHRo8yNxOt8QU8R3szAvPdUqbg"
+const val API_KEY = "AIzaSyD8a90S3aeVn_xedzxzaiWdbbJOHW3H2Mk"
 class HttpInstance {
 
 

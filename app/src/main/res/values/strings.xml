@@ -1,7 +1,17 @@
 <resources>
     <string name="app_name">GMBN Videos</string>
-    <string name="loading_txt">loading...</string>
+    <string name="loading_txt">Loading...</string>
     <string name="video_img">video_image</string>
     <string name="retry">Oops... Retry?</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="movie_title_txt">movie title</string>
+    <string name="movie_description_txt">movie description</string>
+    <string name="duration_txt">duration</string>
+    <string name="duration_lbl">Duration:</string>
+    <string name="view_description_txt">View Description</string>
+    <string name="video_info_txt">Video Information</string>
+    <string name="internet_error_txt">Oops...check internet connection</string>
+    <string name="author_txt">Author: </string>
 
 </resources>
