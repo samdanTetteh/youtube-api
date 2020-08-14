@@ -1,10 +1,10 @@
-package com.ijikod.gmbn_youtube.repository
+package com.ijikod.gmbn_youtube.data
 
-import com.ijikod.gmbn_youtube.repository.remote.VideosApiService
+import com.ijikod.gmbn_youtube.data.remote.VideosApiService
 import androidx.paging.PagingSource
-import com.ijikod.gmbn_youtube.repository.modules.Item
-import com.ijikod.gmbn_youtube.repository.remote.API_KEY
-import com.ijikod.gmbn_youtube.repository.remote.CHANNEL_ID
+import com.ijikod.gmbn_youtube.data.modules.Item
+import com.ijikod.gmbn_youtube.data.remote.API_KEY
+import com.ijikod.gmbn_youtube.data.remote.CHANNEL_ID
 import retrofit2.HttpException
 import java.io.IOException
 

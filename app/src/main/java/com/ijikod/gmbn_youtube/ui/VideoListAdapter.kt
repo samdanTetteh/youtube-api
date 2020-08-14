@@ -10,13 +10,13 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.ijikod.gmbn_youtube.R
-import com.ijikod.gmbn_youtube.repository.modules.Item
+import com.ijikod.gmbn_youtube.data.modules.Item
 
 
 /**
  * Recycler Video adapter to load paged data with view holder patten
  * **/
-class ViewListAdapter :PagingDataAdapter<Item, RecyclerView.ViewHolder>(REPO_COMPARATOR) {
+class VideoListAdapter(private val clickListener : VideoOnclick) :PagingDataAdapter<Item, RecyclerView.ViewHolder>(REPO_COMPARATOR) {
 
     /**
      * Get current view Item and send to view holder to bind data
@@ -24,7 +24,7 @@ class ViewListAdapter :PagingDataAdapter<Item, RecyclerView.ViewHolder>(REPO_COM
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val video = getItem(position)
         video?.let {
-            (holder as VideoViewHolder).bindData(it)
+            (holder as VideoViewHolder).bindData(it, clickListener)
         }
     }
 
@@ -42,6 +42,11 @@ class ViewListAdapter :PagingDataAdapter<Item, RecyclerView.ViewHolder>(REPO_COM
                 oldItem == newItem
         }
     }
+
+
+    interface VideoOnclick{
+        fun click(video: Item)
+    }
 }
 
 
@@ -54,22 +59,19 @@ class VideoViewHolder(view: View) : RecyclerView.ViewHolder(view){
     private val image = view.findViewById<ImageView>(R.id.video_thumb)
     private val title = view.findViewById<TextView>(R.id.video_title)
 
-
-    init {
-        /**
-         * Navigate to details screen
-         * **/
-        view.setOnClickListener{
-
-        }
-    }
-
     /**
      * Bind Data to list item views
      ***/
-    fun bindData(video : Item){
+    fun bindData(video : Item, listener: VideoListAdapter.VideoOnclick){
         title.text = video.snippet.title
         Glide.with(image.context).load(video.snippet.thumbnails.medium.url).placeholder(R.mipmap.ic_launcher).into(image)
+
+        /**
+         * Navigate to details screen
+         * **/
+        this.itemView.setOnClickListener {
+            listener.click(video)
+        }
     }
 
 
@@ -83,4 +85,5 @@ class VideoViewHolder(view: View) : RecyclerView.ViewHolder(view){
             return VideoViewHolder(view)
         }
     }
+
 }

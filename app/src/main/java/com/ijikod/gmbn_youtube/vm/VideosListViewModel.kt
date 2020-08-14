@@ -4,8 +4,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
-import com.ijikod.gmbn_youtube.repository.VideosRepository
-import com.ijikod.gmbn_youtube.repository.modules.Item
+import com.ijikod.gmbn_youtube.data.VideosRepository
+import com.ijikod.gmbn_youtube.data.modules.Item
 import kotlinx.coroutines.flow.Flow
 
 /**
@@ -21,6 +21,11 @@ class VideosListViewModel (private val repository: VideosRepository) : ViewModel
      * fetch videos data and save results with [viewModelScope]
      * **/
     fun fetchVideos() : Flow<PagingData<Item>>{
+        val lastResult = currentResults
+        if (lastResult != null) {
+            return lastResult
+        }
+
         val newResult : Flow<PagingData<Item>> = repository.getVideoListResults()
             .cachedIn(viewModelScope)
         currentResults = newResult

@@ -4,8 +4,11 @@
 
     <!-- Internet permission : Normal protection level-->
     <uses-permission android:name="android.permission.INTERNET"/>
+    <!-- Networks state access permission : Normal protection level-->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
 
     <application
+        android:name=".app.GMBNApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
