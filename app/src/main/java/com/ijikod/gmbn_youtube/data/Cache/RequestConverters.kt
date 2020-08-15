@@ -1,7 +1,9 @@
 package com.ijikod.gmbn_youtube.data.Cache
 
 import androidx.room.TypeConverter
+import com.ijikod.gmbn_youtube.data.modules.CommentItems
 import com.ijikod.gmbn_youtube.data.modules.Item
+import com.ijikod.gmbn_youtube.data.modules.VideoComments
 import com.squareup.moshi.JsonAdapter
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.Types
@@ -16,6 +18,21 @@ class RequestConverters {
 
     private val listItems : ParameterizedType = Types.newParameterizedType(List::class.java, Item::class.java)
     private val listItemsJsonAdapter: JsonAdapter<List<Item>> = moshi.adapter(listItems)
+
+
+    private val commentItems : ParameterizedType = Types.newParameterizedType(List::class.java, CommentItems::class.java)
+    private val listCommentsJsonAdapter: JsonAdapter<List<CommentItems>> = moshi.adapter(commentItems)
+
+
+    @TypeConverter
+    fun listCommentsToJsonStr(listMash: List<CommentItems>?): String? {
+        return listCommentsJsonAdapter.toJson(listMash)
+    }
+
+    @TypeConverter
+    fun jsonCommentsToListString(jsonStr: String?): List<CommentItems>? {
+        return jsonStr?.let { listCommentsJsonAdapter.fromJson(jsonStr) }
+    }
 
 
     @TypeConverter

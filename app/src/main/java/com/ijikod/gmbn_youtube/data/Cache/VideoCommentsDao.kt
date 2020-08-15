@@ -1,12 +1,9 @@
 package com.ijikod.gmbn_youtube.data.Cache
 
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Query
+import androidx.room.*
 import com.ijikod.gmbn_youtube.data.modules.CommentItems
+import com.ijikod.gmbn_youtube.data.modules.TopLevelComment
 import com.ijikod.gmbn_youtube.data.modules.VideoComments
-import com.ijikod.gmbn_youtube.data.modules.VideoItem
 
 /**
  * Data access object for local video comments data manipulation
@@ -19,14 +16,14 @@ interface VideoCommentsDao {
      * Insert all video detail item into local database
      ***/
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertAll(videos : List<CommentItems>)
+    suspend fun insertAll(videosComments : List<TopLevelComment>)
 
 
     /**
      * Fetch items from local database
      * **/
-    @Query("Select * from video_comments where id = :id")
-    fun getVideoComments(id: String): List<CommentItems>
+    @Query("Select * from video_comments where videoId = :id")
+    fun getVideoComments(id: String): List<TopLevelComment>
 
 
     /**

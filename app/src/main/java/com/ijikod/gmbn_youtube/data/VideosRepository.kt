@@ -11,6 +11,7 @@ import com.ijikod.gmbn_youtube.app.GMBNApplication.Companion.appContext
 import com.ijikod.gmbn_youtube.data.Cache.VideoDatabase
 import com.ijikod.gmbn_youtube.data.modules.CommentItems
 import com.ijikod.gmbn_youtube.data.modules.Item
+import com.ijikod.gmbn_youtube.data.modules.TopLevelComment
 import com.ijikod.gmbn_youtube.data.modules.VideoItem
 import com.ijikod.gmbn_youtube.data.remote.API_KEY
 import com.ijikod.gmbn_youtube.data.remote.VideosApiService
@@ -27,7 +28,7 @@ class VideosRepository(private val service : VideosApiService, private val datab
 
 
     val videoDetailsData  = MutableLiveData<List<VideoItem>>()
-    val videoCommentsData = MutableLiveData<List<CommentItems>>()
+    val videoCommentsData = MutableLiveData<List<TopLevelComment>>()
 
 
     /** Fetch data from network and return is as a coroutines flow **/
@@ -85,7 +86,7 @@ class VideosRepository(private val service : VideosApiService, private val datab
             videoDetailsData.postValue(null)
         }else{
             val response = service.getVideoDetails(videoId, API_KEY)
-            val videoDetails = response.body()?.items ?: null
+            val videoDetails = response.body()?.items
             videoDetailsData.postValue(videoDetails)
             videoDetails?.let {
                 database.videoDetailDao().insertAll(it)
@@ -102,11 +103,13 @@ class VideosRepository(private val service : VideosApiService, private val datab
             videoCommentsData.postValue(null)
         }else {
             val response = service.getVideoComments(videoId, API_KEY)
-            val comments = response.body()?.items ?: null
-            videoCommentsData.postValue(comments)
-            comments?.let {
-                database.videoCommentsDao().insertAll(it)
+            val comments = response.body()?.items?.map {
+                 it.snippet.topLevelComment
             }
+            if (comments != null) {
+                response.body()?.let { database.videoCommentsDao().insertAll(comments) }
+            }
+            videoCommentsData.postValue(comments)
         }
 
     }

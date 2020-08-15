@@ -4,7 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.ijikod.gmbn_youtube.data.VideosRepository
 import com.ijikod.gmbn_youtube.data.modules.Item
-
+import com.ijikod.gmbn_youtube.data.modules.VideoItem
 
 
 /**
@@ -13,14 +13,17 @@ import com.ijikod.gmbn_youtube.data.modules.Item
 class VideoDetailsViewModel(private val repository: VideosRepository) : ViewModel() {
 
      // Shared video item between details and list fragment
-     val selectedVideo : MutableLiveData<Item> = MutableLiveData<Item>()
+    val selectedVideo : MutableLiveData<Item> = MutableLiveData<Item>()
+
+    /**
+     * Shared [VideoItem] to display video details
+     * **/
+    val selectedVideoItem : MutableLiveData<VideoItem> = MutableLiveData<VideoItem>()
 
     // Details data emitted from repository
      val videoDetailsData = repository.videoDetailsData
 
     val videoCommentsData = repository.videoCommentsData
-
-
 
     /**
      * View Model function to retrieve video comments data based on [videoId]
@@ -39,11 +42,17 @@ class VideoDetailsViewModel(private val repository: VideosRepository) : ViewMode
     }
 
     /**
-     * Shared video [Item] used in Details View
+     * Set value to Shared video [Item] used in Details View
      * **/
      fun setSelectedVideo(video : Item){
         selectedVideo.value = video
     }
 
+    /**
+     * Set value to Shared [VideoItem] used in Details View
+     * **/
+    fun setSelectedVideoItem(video : VideoItem){
+        selectedVideoItem.value = video
+    }
 
 }

@@ -40,8 +40,7 @@ data class Snippet (
     @Embedded
     var thumbnails: Thumbnails,
     val channelTitle: String,
-    val liveBroadcastContent: String,
-    val publishTime: String
+    val liveBroadcastContent: String
 )
 
 @Parcelize

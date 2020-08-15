@@ -9,8 +9,8 @@
     <fragment
         android:id="@+id/listFragment"
         android:name="com.ijikod.gmbn_youtube.ui.ListFragment"
-        android:label="fragment_list"
-        tools:layout="@layout/fragment_list" >
+        android:label="@string/app_name"
+        tools:layout="@layout/fragment_list">
         <action
             android:id="@+id/action_listFragment_to_detailsFragment"
             app:destination="@id/detailsFragment" />
@@ -18,5 +18,12 @@
     <fragment
         android:id="@+id/detailsFragment"
         android:name="com.ijikod.gmbn_youtube.ui.DetailsFragment"
-        android:label="@string/video_info_txt" />
+        android:label="@string/video_info_txt" >
+        <action
+            android:id="@+id/action_detailsFragment_to_descriptionFragment"
+            app:destination="@id/descriptionFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/descriptionFragment"
+        android:name="com.ijikod.gmbn_youtube.ui.DescriptionFragment" />
 </navigation>

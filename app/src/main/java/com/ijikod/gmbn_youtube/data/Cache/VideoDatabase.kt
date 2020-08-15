@@ -10,7 +10,7 @@ import com.ijikod.gmbn_youtube.data.modules.*
 /**
  * Room Database initialisation to save data locally
  * **/
-@Database(entities = arrayOf(Item::class, RemoteTokens::class, VideoItem::class, CommentItems::class), version = 1, exportSchema = false)
+@Database(entities = arrayOf(Item::class, RemoteTokens::class, VideoItem::class, TopLevelComment::class), version = 1, exportSchema = false)
 @TypeConverters(RequestConverters::class)
 abstract class VideoDatabase : RoomDatabase() {
 

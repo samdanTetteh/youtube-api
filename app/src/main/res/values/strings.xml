@@ -13,5 +13,7 @@
     <string name="video_info_txt">Video Information</string>
     <string name="internet_error_txt">Oops...check internet connection</string>
     <string name="author_txt">Author: </string>
+    <string name="minute_txt">\"min: \"</string>
+    <string name="seconds_txt">sec</string>
 
 </resources>

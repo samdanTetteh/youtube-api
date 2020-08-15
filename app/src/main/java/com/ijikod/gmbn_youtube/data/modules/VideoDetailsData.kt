@@ -19,6 +19,8 @@ data class VideoItem (
     val etag: String,
     val id: String,
     @Embedded
+    val snippet: Snippet,
+    @Embedded
     val contentDetails: ContentDetails
 )
 
