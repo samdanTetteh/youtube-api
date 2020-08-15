@@ -8,10 +8,11 @@ import androidx.appcompat.view.menu.MenuView
 import androidx.recyclerview.widget.RecyclerView
 import com.ijikod.gmbn_youtube.R
 import com.ijikod.gmbn_youtube.data.modules.CommentItems
+import com.ijikod.gmbn_youtube.data.modules.TopLevelComment
 import com.ijikod.gmbn_youtube.data.modules.VideoComments
 import kotlinx.android.synthetic.main.commment_layout_item.view.*
 
-class CommentAdapter(private val comments : List<CommentItems>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class CommentAdapter(private val comments : List<TopLevelComment>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
@@ -36,9 +37,9 @@ class CommentAdapter(private val comments : List<CommentItems>) : RecyclerView.A
         val authorTxt = view.findViewById<TextView>(R.id.author_txt)
         val commentTxt = view.findViewById<TextView>(R.id.comment_txt)
 
-        fun bind(comment : CommentItems){
-            commentTxt.text = comment.snippet.topLevelComment.snippet.textDisplay
-            authorTxt.text = comment.snippet.topLevelComment.snippet.authorDisplayName
+        fun bind(comment : TopLevelComment){
+            commentTxt.text = comment.snippet.textDisplay
+            authorTxt.text = comment.snippet.authorDisplayName
         }
 
     }

@@ -9,17 +9,27 @@
             type="com.ijikod.gmbn_youtube.vm.VideoDetailsViewModel" />
     </data>
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+
+
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <ImageView
             android:id="@+id/imageView"
+            imageUrl="@{vm.selectedVideo.snippet.thumbnails.high.url}"
             android:layout_width="match_parent"
             android:layout_height="220dp"
+            android:layout_marginBottom="5dp"
             android:contentDescription="@string/video_img"
             android:scaleType="fitXY"
-            imageUrl="@{vm.selectedVideo.snippet.thumbnails.high.url}"
+            app:layout_constraintBottom_toTopOf="@+id/title"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -32,15 +42,16 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
+            android:contentDescription="@string/movie_title_txt"
+            android:text="@{vm.selectedVideo.snippet.title}"
+            android:textColor="@color/colorPrimary"
             android:textSize="15sp"
             android:textStyle="bold"
-            android:contentDescription="@string/movie_title_txt"
-            android:textColor="@color/colorPrimary"
-            tools:text="What Can You Learn From Neil? | GMBN Presenters"
+            app:layout_constraintBottom_toTopOf="@+id/duration__Lbl"
             app:layout_constraintEnd_toEndOf="parent"
-            android:text="@{vm.selectedVideo.snippet.title}"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView" />
+            app:layout_constraintTop_toBottomOf="@+id/imageView"
+            tools:text="What Can You Learn From Neil? | GMBN Presenters" />
 
         <TextView
             android:id="@+id/descp"
@@ -48,10 +59,12 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
+            android:layout_marginBottom="1dp"
             android:contentDescription="@string/movie_description_txt"
+            android:text="@{vm.selectedVideo.snippet.description}"
             android:textColor="@color/colorPrimary"
             android:textSize="18sp"
-            android:text="@{vm.selectedVideo.snippet.description}"
+            app:layout_constraintBottom_toTopOf="@+id/view_more"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/duration__Lbl"
@@ -66,6 +79,7 @@
             android:text="@string/duration_lbl"
             android:textSize="16sp"
             android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/descp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/title" />
 
@@ -87,26 +101,49 @@
              />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:layout_width="395dp"
-            android:layout_height="362dp"
+            android:id="@+id/comments_list"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:visibility="invisible"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/view_more" />
+            app:layout_constraintTop_toBottomOf="@+id/view_more"
+            app:layout_constraintVertical_bias="0.588" />
 
         <TextView
             android:id="@+id/view_more"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
-            android:text="@string/view_description_txt"
+            android:layout_marginBottom="1dp"
             android:contentDescription="@string/view_description_txt"
             android:padding="5dp"
+            android:text="@string/view_description_txt"
             android:textStyle="italic"
             android:visibility="invisible"
+            app:layout_constraintBottom_toTopOf="@+id/comments_list"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/descp" />
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/comments_list"
+            app:layout_constraintTop_toTopOf="@+id/comments_list" />
     </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
 </layout>
