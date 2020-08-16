@@ -9,11 +9,13 @@
     <string name="movie_description_txt">movie description</string>
     <string name="duration_txt">duration</string>
     <string name="duration_lbl">Duration:</string>
+    <string name="duration_lbl_2">Duration</string>
     <string name="view_description_txt">View Description</string>
     <string name="video_info_txt">Video Information</string>
     <string name="internet_error_txt">Oops...check internet connection</string>
     <string name="author_txt">Author: </string>
     <string name="minute_txt">\"min: \"</string>
     <string name="seconds_txt">sec</string>
+    <string name="no_data_txt">--</string>
 
 </resources>

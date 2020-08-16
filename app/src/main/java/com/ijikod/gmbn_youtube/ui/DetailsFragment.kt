@@ -82,10 +82,11 @@ class DetailsFragment : Fragment() {
         sharedViewModel.videoDetailsData.observe(viewLifecycleOwner, Observer { videoItemList ->
             if (videoItemList == null){
                 Toast.makeText(requireActivity(), getString(R.string.internet_error_txt), Toast.LENGTH_LONG).show()
+                viewMoreTxt.visibility  = View.INVISIBLE
+                durationTxt.text = getString(R.string.no_data_txt)
             }else{
                 durationTxt.text = durationFormatting(videoItemList[0].contentDetails.duration)
                 viewMoreTxt.visibility  = View.VISIBLE
-
                 // Move to details fragment to show full description details
                 viewMoreTxt.setOnClickListener {
                     sharedViewModel.setSelectedVideoItem(videoItemList[0])
@@ -103,16 +104,28 @@ class DetailsFragment : Fragment() {
         // Subscribe to listen on object changes from view model using live data
         sharedViewModel.videoCommentsData.observe(viewLifecycleOwner, Observer {
             if (it == null){
-                progressBar.visibility= View.GONE
+                hideCommentsList()
                 Toast.makeText(requireActivity(), getString(R.string.internet_error_txt), Toast.LENGTH_LONG).show()
             }else{
                 adapter = CommentAdapter(it)
                 recyclerView.adapter = adapter
-                progressBar.visibility = View.GONE
-                recyclerView.visibility = View.VISIBLE
+                showCommentsList()
             }
         })
     }
+
+
+
+    private fun showCommentsList(){
+        progressBar.visibility= View.INVISIBLE
+        recyclerView.visibility = View.VISIBLE
+    }
+
+    private fun hideCommentsList(){
+        progressBar.visibility= View.INVISIBLE
+        recyclerView.visibility = View.INVISIBLE
+    }
+
 
 
     private fun durationFormatting(duration: String) : String{
