@@ -9,14 +9,6 @@
             type="com.ijikod.gmbn_youtube.vm.VideoDetailsViewModel" />
     </data>
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:fillViewport="true">
-
-
-
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -43,15 +35,13 @@
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:contentDescription="@string/movie_title_txt"
-            android:text="@{vm.selectedVideo.snippet.title}"
-            android:textColor="@color/colorPrimary"
+            htmlTxt="@{vm.selectedVideo.snippet.title}"
             android:textSize="15sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toTopOf="@+id/duration__Lbl"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView"
-            tools:text="What Can You Learn From Neil? | GMBN Presenters" />
+            app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
         <TextView
             android:id="@+id/descp"
@@ -61,14 +51,13 @@
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="1dp"
             android:contentDescription="@string/movie_description_txt"
-            android:text="@{vm.selectedVideo.snippet.description}"
+            htmlTxt="@{vm.selectedVideo.snippet.description}"
             android:textColor="@color/colorPrimary"
             android:textSize="18sp"
             app:layout_constraintBottom_toTopOf="@+id/view_more"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/duration__Lbl"
-            tools:text="Neil Donoghue: World Cup Downhill racer, Enduro racer, Mountain bike coach, GMBN presenter. Cool, calm, and collected, here are a few things you can learn ..." />
+            app:layout_constraintTop_toBottomOf="@+id/duration__Lbl" />
 
         <TextView
             android:id="@+id/duration__Lbl"
@@ -145,5 +134,4 @@
             app:layout_constraintStart_toStartOf="@+id/comments_list"
             app:layout_constraintTop_toTopOf="@+id/comments_list" />
     </androidx.constraintlayout.widget.ConstraintLayout>
-    </ScrollView>
 </layout>

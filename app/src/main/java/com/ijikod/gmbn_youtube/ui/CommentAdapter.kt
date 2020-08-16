@@ -1,10 +1,12 @@
 package com.ijikod.gmbn_youtube.ui
 
+import android.text.Html
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.appcompat.view.menu.MenuView
+import androidx.core.text.HtmlCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.ijikod.gmbn_youtube.R
 import com.ijikod.gmbn_youtube.data.modules.CommentItems
@@ -38,7 +40,7 @@ class CommentAdapter(private val comments : List<TopLevelComment>) : RecyclerVie
         val commentTxt = view.findViewById<TextView>(R.id.comment_txt)
 
         fun bind(comment : TopLevelComment){
-            commentTxt.text = comment.snippet.textDisplay
+            commentTxt.text = comment.snippet.textDisplay?.let { HtmlCompat.fromHtml(it, HtmlCompat.FROM_HTML_MODE_LEGACY) }
             authorTxt.text = comment.snippet.authorDisplayName
         }
 
