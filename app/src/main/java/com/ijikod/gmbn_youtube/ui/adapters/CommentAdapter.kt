@@ -1,18 +1,13 @@
-package com.ijikod.gmbn_youtube.ui
+package com.ijikod.gmbn_youtube.ui.adapters
 
-import android.text.Html
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import androidx.appcompat.view.menu.MenuView
 import androidx.core.text.HtmlCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.ijikod.gmbn_youtube.R
-import com.ijikod.gmbn_youtube.data.modules.CommentItems
 import com.ijikod.gmbn_youtube.data.modules.TopLevelComment
-import com.ijikod.gmbn_youtube.data.modules.VideoComments
-import kotlinx.android.synthetic.main.commment_layout_item.view.*
 
 class CommentAdapter(private val comments : List<TopLevelComment>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 

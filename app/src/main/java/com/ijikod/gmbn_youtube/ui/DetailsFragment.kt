@@ -2,16 +2,13 @@ package com.ijikod.gmbn_youtube.ui
 
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
-import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -20,8 +17,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.ijikod.gmbn_youtube.Injection
 import com.ijikod.gmbn_youtube.R
 import com.ijikod.gmbn_youtube.databinding.FragmentDetailsBinding
+import com.ijikod.gmbn_youtube.ui.adapters.CommentAdapter
 import com.ijikod.gmbn_youtube.vm.VideoDetailsViewModel
-import kotlinx.android.synthetic.main.fragment_details.*
 
 /**
  * A simple [Fragment] subclass to display movie details fragment
