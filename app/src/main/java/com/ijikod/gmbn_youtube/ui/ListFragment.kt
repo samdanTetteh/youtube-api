@@ -16,6 +16,8 @@ import com.ijikod.gmbn_youtube.Injection
 import com.ijikod.gmbn_youtube.R
 import com.ijikod.gmbn_youtube.databinding.FragmentListBinding
 import com.ijikod.gmbn_youtube.data.modules.Item
+import com.ijikod.gmbn_youtube.ui.adapters.LoadingStateAdapter
+import com.ijikod.gmbn_youtube.ui.adapters.VideoListAdapter
 import com.ijikod.gmbn_youtube.vm.VideoDetailsViewModel
 import com.ijikod.gmbn_youtube.vm.VideosListViewModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -69,7 +71,7 @@ class ListFragment : Fragment() {
         /**
          * Click listener to navigate to [DetailsFragment]
          * **/
-        listener = object :VideoListAdapter.VideoOnclick{
+        listener = object : VideoListAdapter.VideoOnclick{
             override fun click(video: Item) {
 
                 sharedViewModel = ViewModelProvider(requireActivity(), Injection.provideViewModelFactory(requireActivity()))
@@ -83,7 +85,7 @@ class ListFragment : Fragment() {
 
         adapter = VideoListAdapter(listener)
         binding.videoList.adapter = adapter
-        binding.videoList.adapter = adapter.withLoadStateFooter(footer = LoadingStateAdapter{
+        binding.videoList.adapter = adapter.withLoadStateFooter(footer = LoadingStateAdapter {
             adapter.retry()
         })
 

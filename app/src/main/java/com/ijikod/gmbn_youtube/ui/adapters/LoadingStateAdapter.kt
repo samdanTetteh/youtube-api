@@ -1,8 +1,9 @@
-package com.ijikod.gmbn_youtube.ui
+package com.ijikod.gmbn_youtube.ui.adapters
 
 import android.view.ViewGroup
 import androidx.paging.LoadState
 import androidx.paging.LoadStateAdapter
+import com.ijikod.gmbn_youtube.ui.LoadingStateViewHolder
 
 
 /**
@@ -23,7 +24,10 @@ class LoadingStateAdapter(private val retry: () -> Unit) : LoadStateAdapter<Load
         parent: ViewGroup,
         loadState: LoadState
     ): LoadingStateViewHolder {
-        return LoadingStateViewHolder.create(parent, retry = retry)
+        return LoadingStateViewHolder.create(
+            parent,
+            retry = retry
+        )
     }
 
 }

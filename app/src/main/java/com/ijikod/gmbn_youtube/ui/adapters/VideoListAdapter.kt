@@ -1,4 +1,4 @@
-package com.ijikod.gmbn_youtube.ui
+package com.ijikod.gmbn_youtube.ui.adapters
 
 import android.view.LayoutInflater
 import android.view.View
@@ -16,7 +16,9 @@ import com.ijikod.gmbn_youtube.data.modules.Item
 /**
  * Recycler Video adapter to load paged data with view holder patten
  * **/
-class VideoListAdapter(private val clickListener : VideoOnclick) :PagingDataAdapter<Item, RecyclerView.ViewHolder>(REPO_COMPARATOR) {
+class VideoListAdapter(private val clickListener : VideoOnclick) :PagingDataAdapter<Item, RecyclerView.ViewHolder>(
+    REPO_COMPARATOR
+) {
 
     /**
      * Get current view Item and send to view holder to bind data
@@ -30,7 +32,9 @@ class VideoListAdapter(private val clickListener : VideoOnclick) :PagingDataAdap
 
     /** inflate view holder view **/
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        return VideoViewHolder.create(parent)
+        return VideoViewHolder.create(
+            parent
+        )
     }
 
     companion object {

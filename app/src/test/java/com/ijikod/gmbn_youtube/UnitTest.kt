@@ -9,9 +9,23 @@ import org.junit.Assert.*
  *
  * See [testing documentation](http://d.android.com/tools/testing).
  */
-class ExampleUnitTest {
+class UnitTest {
+
+    val duration = "PT30M49S"
+
+
     @Test
     fun addition_isCorrect() {
         assertEquals(4, 2 + 2)
     }
+
+
+
+    @Test
+    fun testDurationFunction(){
+        assertEquals("30min: 49sec", )
+    }
+
+
+
 }
