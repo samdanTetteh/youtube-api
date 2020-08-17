@@ -1,12 +1,10 @@
 package com.ijikod.gmbn_youtube.vm
 
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
-import androidx.paging.PagingData
-import androidx.paging.cachedIn
+import androidx.lifecycle.*
+import androidx.paging.PagedList
 import com.ijikod.gmbn_youtube.data.VideosRepository
 import com.ijikod.gmbn_youtube.data.modules.Item
-import kotlinx.coroutines.flow.Flow
+import com.ijikod.gmbn_youtube.data.modules.VideoListResults
 
 /**
  * ViewModel class to serve as a bridge between our repository and UI
@@ -15,20 +13,16 @@ import kotlinx.coroutines.flow.Flow
  * **/
 class VideosListViewModel (private val repository: VideosRepository) : ViewModel() {
 
-    private var currentResults : Flow<PagingData<Item>>? = null
+    private val videoLiveData = MutableLiveData<VideoListResults>()
 
-    /**
-     * fetch videos data and save results with [viewModelScope]
-     * **/
-    fun fetchVideos() : Flow<PagingData<Item>>{
-        val lastResult = currentResults
-        if (lastResult != null) {
-            return lastResult
-        }
+    var videos: LiveData<PagedList<Item>> = Transformations.switchMap(videoLiveData){
+        repository.videoListData
+    }
+    var networkErrors: LiveData<String> = Transformations.switchMap(videoLiveData){
+        repository.networkErrors
+    }
 
-        val newResult : Flow<PagingData<Item>> = repository.getVideoListResults()
-            .cachedIn(viewModelScope)
-        currentResults = newResult
-        return newResult
+    fun getNewVideos(isRefreshing : Boolean){
+        videoLiveData.value = repository.listVideos(isRefreshing)
     }
 }

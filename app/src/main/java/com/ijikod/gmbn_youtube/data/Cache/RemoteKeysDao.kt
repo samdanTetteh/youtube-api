@@ -4,6 +4,7 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import com.ijikod.gmbn_youtube.data.modules.ID
 import com.ijikod.gmbn_youtube.data.modules.RemoteTokens
 
 
@@ -17,13 +18,13 @@ interface RemoteKeysDao {
      * Select all remote tokens
      * **/
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertAll(remoteKeys: List<RemoteTokens>)
+    suspend fun insert(remoteKey: RemoteTokens)
 
     /**
      * Select all remote tokens via [keyId]
      * **/
-    @Query("Select * from remote_tokens WHERE etag = :etag")
-    suspend fun getKeyTokenById(etag : String) : RemoteTokens?
+    @Query("Select * from remote_tokens")
+    suspend fun getRequestTokens() : List<RemoteTokens>
 
     /**
      * Delete all remote token data

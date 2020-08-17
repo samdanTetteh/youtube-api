@@ -15,7 +15,7 @@ data class VideosData (
     val prevPageToken: String?,
     val regionCode: String,
     val pageInfo: PageInfo,
-    val items: List<Item>
+    val items: List<Item>?
 )
 
 @Entity(tableName = "videos" , primaryKeys = arrayOf("kind", "etag"))

@@ -1,6 +1,6 @@
 package com.ijikod.gmbn_youtube.data.Cache
 
-import androidx.paging.PagingSource
+import androidx.paging.DataSource
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
@@ -24,7 +24,7 @@ interface VideosDao {
      * Fetch all items from local database
      * **/
     @Query("Select * from videos")
-    fun getVideos(): PagingSource<Int, Item>
+    fun getVideos(): DataSource.Factory<Int, Item>
 
     /**
      * Delete all data

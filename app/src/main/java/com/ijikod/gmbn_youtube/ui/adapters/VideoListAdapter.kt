@@ -5,7 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.paging.PagingDataAdapter
+import androidx.paging.PagedListAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -16,9 +16,7 @@ import com.ijikod.gmbn_youtube.data.modules.Item
 /**
  * Recycler Video adapter to load paged data with view holder patten
  * **/
-class VideoListAdapter(private val clickListener : VideoOnclick) :PagingDataAdapter<Item, RecyclerView.ViewHolder>(
-    REPO_COMPARATOR
-) {
+class VideoListAdapter(private val clickListener : VideoOnclick) : PagedListAdapter<Item, RecyclerView.ViewHolder>(REPO_COMPARATOR) {
 
     /**
      * Get current view Item and send to view holder to bind data
