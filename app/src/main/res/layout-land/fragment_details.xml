@@ -112,21 +112,32 @@
 
             <TextView
                 android:id="@+id/view_more"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
                 android:contentDescription="@string/view_description_txt"
                 android:padding="5dp"
                 android:text="@string/view_description_txt"
                 android:textAlignment="center"
-                android:textStyle="italic"
+                android:textStyle="italic|bold"
                 android:visibility="invisible"
                 app:layout_constraintBottom_toTopOf="@+id/duration__Lbl"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/descp" />
+
+            <TextView
+                android:id="@+id/date_txt"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:textStyle="italic"
+                android:textSize="18sp"
+                dateTxt="@{vm.selectedVideo.snippet.publishedAt}"
+                app:layout_constraintBottom_toTopOf="@+id/duration__Lbl"
+                app:layout_constraintEnd_toStartOf="@+id/view_more"
+                app:layout_constraintStart_toStartOf="@+id/descp"
+                app:layout_constraintTop_toBottomOf="@+id/descp" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
 
