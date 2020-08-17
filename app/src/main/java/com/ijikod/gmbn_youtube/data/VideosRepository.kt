@@ -3,22 +3,19 @@ package com.ijikod.gmbn_youtube.data
 import android.content.Context
 import android.net.ConnectivityManager
 import androidx.annotation.WorkerThread
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.paging.Pager
-import androidx.paging.PagingConfig
-import androidx.paging.PagingData
+import androidx.paging.*
 import com.ijikod.gmbn_youtube.app.GMBNApplication.Companion.appContext
 import com.ijikod.gmbn_youtube.data.Cache.VideoDatabase
-import com.ijikod.gmbn_youtube.data.modules.CommentItems
-import com.ijikod.gmbn_youtube.data.modules.Item
-import com.ijikod.gmbn_youtube.data.modules.TopLevelComment
-import com.ijikod.gmbn_youtube.data.modules.VideoItem
+import com.ijikod.gmbn_youtube.data.modules.*
 import com.ijikod.gmbn_youtube.data.remote.API_KEY
+import com.ijikod.gmbn_youtube.data.remote.CHANNEL_ID
 import com.ijikod.gmbn_youtube.data.remote.VideosApiService
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
+import java.lang.Exception
 
 /**
  * Video repository class to fetch data from network with [VideosApiService] or [VideoDatabase] and pass it
@@ -30,24 +27,114 @@ class VideosRepository(private val service : VideosApiService, private val datab
     val videoDetailsData  = MutableLiveData<List<VideoItem>>()
     val videoCommentsData = MutableLiveData<List<TopLevelComment>>()
 
+    lateinit var videoListData : LiveData<PagedList<Item>>
+    lateinit var networkErrors : LiveData<String>
 
-    /** Fetch data from network and return is as a coroutines flow **/
-    fun getVideoListResults() : Flow<PagingData<Item>>{
 
-        val pagingSourcefactory = {
-            database.videosDao().getVideos()
+
+    /**
+     * [VideosRepository] class to load data from local repository to serve as single sauce of truth
+     * **/
+    fun listVideos(isRefreshing : Boolean): VideoListResults{
+        if (isRefreshing && networkAvailable()){
+          removeAllData()
         }
-        return Pager(
-            /** Setup [PagingConfig] to determine how loading options from
-             * [VideoRemoteMediator] as Data mediator **/
-            config = PagingConfig(
-                pageSize = MAX_PAGE_SIZE,
-                enablePlaceholders = false
-            ),
-            remoteMediator = VideoRemoteMediator(service, database),
-            pagingSourceFactory = pagingSourcefactory
-        ).flow
+
+        val dataSourceFactory= getVideos()
+
+        val videosListBoundryCallBack = VideosListBoundryCallBack(this)
+
+        networkErrors = videosListBoundryCallBack.networkErrors
+
+        videoListData = LivePagedListBuilder(dataSourceFactory, MAX_PAGE_SIZE).setBoundaryCallback(videosListBoundryCallBack).build()
+
+        return VideoListResults(videoListData, networkErrors)
+
     }
+
+    /**
+     * Insert [videos] list from remote into local repository
+     * **/
+    fun insertVideos(videos: List<Item>, insertFinished: () -> Unit){
+        CoroutineScope(Dispatchers.IO).launch {
+            database.videosDao().insertAll(videos)
+            insertFinished()
+        }
+    }
+
+   private fun getVideos(): DataSource.Factory<Int, Item>{
+        return database.videosDao().getVideos()
+    }
+
+    suspend fun getTokens(): List<RemoteTokens>{
+        return database.remoteTokenDao().getRequestTokens()
+    }
+
+
+    /**
+     * Insert token for page tracking
+     * **/
+     fun insertToken(remoteTokens: RemoteTokens){
+        CoroutineScope(Dispatchers.IO).launch {
+            database.remoteTokenDao().insert(remoteTokens)
+        }
+    }
+
+    private fun removeAllData(){
+        // Delete all video data saved locally
+        deleteVideos()
+        deleteTokens()
+        deleteComments()
+        deleteVideoDetails()
+    }
+
+    private fun deleteVideos(){
+        CoroutineScope(Dispatchers.IO).launch {
+            database.videosDao().deleteAllData()
+        }
+    }
+
+
+    private fun deleteTokens(){
+        CoroutineScope(Dispatchers.IO).launch {
+            database.remoteTokenDao().clearRemoteTokenData()
+        }
+    }
+
+
+    private fun deleteComments(){
+        CoroutineScope(Dispatchers.IO).launch {
+            database.videoCommentsDao().deleteVideoCommentsData()
+        }
+    }
+
+    private fun deleteVideoDetails(){
+        CoroutineScope(Dispatchers.IO).launch {
+            database.videoDetailDao().deleteVideoDetailsData()
+        }
+    }
+
+
+
+
+    @WorkerThread
+    suspend fun getVideosFromNetwork(pageToken: String,
+        onSuccess: (videos: VideosData) -> Unit,
+        onError: (error: String) -> Unit
+    ) {
+        if (networkAvailable().not()){
+            onError("IO Error")
+        }else {
+            try{
+                val response = service.searchVideos(CHANNEL_ID ,pageToken, API_KEY)
+                val videos = response.items ?: emptyList()
+                onSuccess(response)
+            }catch (exception : Exception){
+                exception.message?.let { onError(it) }
+            }
+        }
+    }
+
 
     /**
      * Check for exiting data before fetch from network
@@ -111,11 +198,13 @@ class VideosRepository(private val service : VideosApiService, private val datab
             }
             videoCommentsData.postValue(comments)
         }
-
     }
 
+    /**
+     * Check for active internet connection
+     * **/
     @Suppress("DEPRECATION")
-    private fun networkAvailable(): Boolean {
+     fun networkAvailable(): Boolean {
         // Check active internet connection
         val connectivityManager = appContext.getSystemService(Context.CONNECTIVITY_SERVICE)
                 as ConnectivityManager
@@ -127,6 +216,6 @@ class VideosRepository(private val service : VideosApiService, private val datab
      * Set max page size to avoid pager flicker
      * **/
     companion object{
-        private const val MAX_PAGE_SIZE = 50
+        private const val MAX_PAGE_SIZE = 10
     }
 }

@@ -5,7 +5,7 @@ import retrofit2.converter.moshi.MoshiConverterFactory
 
 
 const val CHANNEL_ID = "UC_A--fhX5gea0i4UtpD99Gg"
-const val API_KEY = "AIzaSyC_hoCTmhQUIekHLRJH8LTTgaGs0QWOb6w"
+const val API_KEY = "AIzaSyB2268VHDJCf0R2idK-VtRS3Al_2BnRaXc"
 class HttpInstance {
 
 

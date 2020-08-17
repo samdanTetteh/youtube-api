@@ -125,7 +125,7 @@ class DetailsFragment : Fragment() {
 
 
 
-    private fun durationFormatting(duration: String) : String{
+     fun durationFormatting(duration: String) : String{
         // Format duration text
         return duration.let {
             it.trim().removeRange(0, 2).replace("m", getString(R.string.minute_txt), ignoreCase = true)
