@@ -36,10 +36,10 @@ saved locally yet.
      <td>Details Screen</td>
   </tr>
   <tr>
-    <td><img src="/Images/list.png" width=250 height=480></td>
-    <td><img src="/Images/details.png" width=250 height=480></td>
-    <td><img src="/Images/details_land.png" width=250 height=480></td>
-    <td><img src="/Images/more_details.png" width=250 height=480></td>
+    <td><img src="/Images/list.png" width=300 height=480></td>
+    <td><img src="/Images/details.png" width=300 height=480></td>
+    <td><img src="/Images/details_land.png" width=500 height=250></td>
+    <td><img src="/Images/more_details.png" width=300 height=480></td>
   </tr>
  </table>
 
