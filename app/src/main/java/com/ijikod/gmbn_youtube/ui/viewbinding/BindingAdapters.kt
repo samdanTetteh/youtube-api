@@ -30,7 +30,7 @@ fun loadDescription(textView: TextView, value : String?){
 
 
 /**
- * A [BindingAdapter] to for formatted date
+ * A [BindingAdapter] to for formatted date from server
  * **/
 @BindingAdapter("dateTxt")
 fun formatDateTime(textView: TextView, value: String?){
