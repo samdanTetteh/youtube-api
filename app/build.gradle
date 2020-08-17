@@ -89,4 +89,13 @@ dependencies {
     // AndroidJUnitRunner and JUnit Rules
     androidTestImplementation "androidx.test:runner:$junit_rules"
     androidTestImplementation "androidx.test:rules:$junit_rules"
+
+    // Mockito
+    androidTestImplementation "org.mockito:mockito-core:2.7.22"
+    androidTestImplementation "org.mockito:mockito-android:2.25.0"
+    androidTestImplementation "androidx.arch.core:core-testing:2.0.0"
+
+    // Fragment Tests
+    implementation 'androidx.fragment:fragment:1.1.0-alpha01'
+    debugImplementation 'androidx.fragment:fragment-testing:1.1.0-alpha01'
 }

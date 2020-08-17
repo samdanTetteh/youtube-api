@@ -30,5 +30,5 @@ interface VideoCommentsDao {
      * Delete all data
      * **/
     @Query("Delete from video_comments")
-    suspend fun deleteVideoDetailsData()
+    suspend fun deleteVideoCommentsData()
 }
