@@ -41,7 +41,7 @@ class VideoListInstrumentedTest {
     @Test
     fun recyclerViewDisplayedCheck(){
         //this test will fail until the exact item count of the list is known and can be asserted
-        Espresso.onView(withId(R.id.video_list)).check(CustomAssertions.hasItemCount(150))
+        Espresso.onView(withId(R.id.video_list)).check(CustomAssertions.hasItemCount(10))
     }
 
 

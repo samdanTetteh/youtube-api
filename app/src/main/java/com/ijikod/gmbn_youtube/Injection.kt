@@ -19,7 +19,7 @@ object Injection {
     /**
      * Creates an instance of [VideosRepository] based on the [HttpInstance]
      */
-    private fun provideVideoRepository(context: Context): VideosRepository {
+     fun provideVideoRepository(context: Context): VideosRepository {
         return VideosRepository(HttpInstance.create(), VideoDatabase.getInstance(context))
     }
 
