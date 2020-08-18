@@ -22,6 +22,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        supportFragmentManager.fragmentFactory = VideoFragmentFactory()
         // setup toolbar with navigation component
         toolbar.setupWithNavController(navHostFragment.navController, appBarConfiguration)
     }
