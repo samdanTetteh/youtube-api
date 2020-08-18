@@ -128,9 +128,9 @@ class DetailsFragment : Fragment() {
      fun durationFormatting(duration: String) : String{
         // Format duration text
         return duration.let {
-            it.trim().removeRange(0, 2).replace("m", getString(R.string.minute_txt), ignoreCase = true)
-        }.let {
-            it.replace("S", getString(R.string.seconds_txt), ignoreCase = false)
+            it.trim().substring(2, it.length).replace("M", getString(R.string.minute_txt), ignoreCase = false)
+        }.run {
+            replace("S", getString(R.string.seconds_txt), ignoreCase = false)
         }
     }
 }
