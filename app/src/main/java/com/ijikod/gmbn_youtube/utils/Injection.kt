@@ -1,12 +1,11 @@
-package com.ijikod.gmbn_youtube
+package com.ijikod.gmbn_youtube.utils
 
 import android.content.Context
 import androidx.lifecycle.ViewModelProvider
 import com.ijikod.gmbn_youtube.data.Cache.VideoDatabase
-import com.ijikod.gmbn_youtube.data.VideoDetailsRepository
 import com.ijikod.gmbn_youtube.data.VideosRepository
 import com.ijikod.gmbn_youtube.data.remote.HttpInstance
-import com.ijikod.gmbn_youtube.ui.ViewModelFactory
+import com.ijikod.gmbn_youtube.presentation.Factory.ViewModelFactory
 
 
 /**
@@ -29,6 +28,10 @@ object Injection {
      * [ViewModel] objects.
      */
     fun provideViewModelFactory(context: Context): ViewModelProvider.Factory {
-        return ViewModelFactory(provideVideoRepository(context))
+        return ViewModelFactory(
+            provideVideoRepository(
+                context
+            )
+        )
     }
 }

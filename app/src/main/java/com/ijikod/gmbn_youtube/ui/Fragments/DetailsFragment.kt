@@ -1,4 +1,4 @@
-package com.ijikod.gmbn_youtube.ui
+package com.ijikod.gmbn_youtube.ui.Fragments
 
 import android.content.Context
 import android.os.Bundle
@@ -14,11 +14,12 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
-import com.ijikod.gmbn_youtube.Injection
+import com.ijikod.gmbn_youtube.utils.Injection
 import com.ijikod.gmbn_youtube.R
 import com.ijikod.gmbn_youtube.databinding.FragmentDetailsBinding
 import com.ijikod.gmbn_youtube.ui.adapters.CommentAdapter
 import com.ijikod.gmbn_youtube.presentation.VideoDetailsViewModel
+import com.ijikod.gmbn_youtube.ui.DetailsFragmentDirections
 
 /**
  * A simple [Fragment] subclass to display movie details fragment
