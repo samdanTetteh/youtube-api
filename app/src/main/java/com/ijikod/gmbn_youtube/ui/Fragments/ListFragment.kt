@@ -16,10 +16,10 @@ import com.ijikod.gmbn_youtube.Injection
 import com.ijikod.gmbn_youtube.R
 import com.ijikod.gmbn_youtube.databinding.FragmentListBinding
 import com.ijikod.gmbn_youtube.data.models.Item
+import com.ijikod.gmbn_youtube.presentation.ShareViewModel
 import com.ijikod.gmbn_youtube.ui.adapters.VideoListAdapter
 import com.ijikod.gmbn_youtube.presentation.VideoDetailsViewModel
 import com.ijikod.gmbn_youtube.presentation.VideosListViewModel
-import com.ijikod.gmbn_youtube.ui.ListFragmentDirections
 
 /**
  * [Fragment] class to display video list
@@ -28,8 +28,8 @@ class ListFragment : Fragment() {
 
     private lateinit var binding: FragmentListBinding
     private lateinit var adapter: VideoListAdapter
-    private lateinit var viewModel : VideosListViewModel
-    private lateinit var sharedViewModel : VideoDetailsViewModel
+    private lateinit var videoListViewModel : VideosListViewModel
+    private lateinit var sharedViewModel: ShareViewModel
 
     private lateinit var listener : VideoListAdapter.VideoOnclick
 
@@ -37,10 +37,10 @@ class ListFragment : Fragment() {
         super.onCreate(savedInstanceState)
 
         // get the view model
-        viewModel = ViewModelProvider(requireActivity(), Injection.provideViewModelFactory(requireActivity()))
+        videoListViewModel = ViewModelProvider(requireActivity(), Injection.provideViewModelFactory(requireActivity()))
             .get(VideosListViewModel::class.java)
 
-        viewModel.getNewVideos(false)
+        videoListViewModel.getNewVideos(false)
 
     }
 
@@ -68,7 +68,7 @@ class ListFragment : Fragment() {
             override fun click(video: Item) {
 
                 sharedViewModel = ViewModelProvider(requireActivity(), Injection.provideViewModelFactory(requireActivity()))
-                    .get(VideoDetailsViewModel::class.java)
+                    .get(ShareViewModel::class.java)
 
                 sharedViewModel.setSelectedVideo(video)
                 val action =
@@ -81,7 +81,7 @@ class ListFragment : Fragment() {
         binding.videoList.adapter = adapter
 
 
-        viewModel.videos.observe(requireActivity(), Observer<PagedList<Item>> {
+        videoListViewModel.videos.observe(requireActivity(), Observer<PagedList<Item>> {
             Log.d("Activity", "list: ${it.size}")
             if (binding.pullRefresh.isRefreshing) binding.pullRefresh.isRefreshing = false
             binding.progressBar.visibility = View.GONE
@@ -93,7 +93,7 @@ class ListFragment : Fragment() {
 
             }
         })
-        viewModel.networkErrors.observe(requireActivity(), Observer<String> {
+        videoListViewModel.networkErrors.observe(requireActivity(), Observer<String> {
             if (it.isNotEmpty()) Toast.makeText(requireContext(), "$it", Toast.LENGTH_LONG).show()
 
             // Show retry button when not data has been submitted
@@ -109,11 +109,11 @@ class ListFragment : Fragment() {
      * **/
     private fun initRefreshViews() {
         binding.pullRefresh.setOnRefreshListener{
-            viewModel.getNewVideos(true)
+            videoListViewModel.getNewVideos(true)
         }
 
         binding.retryButton.setOnClickListener {
-            viewModel.getNewVideos(true)
+            videoListViewModel.getNewVideos(true)
         }
     }
 }

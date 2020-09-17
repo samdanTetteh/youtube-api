@@ -3,12 +3,6 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <data>
-        <variable
-            name="vm"
-            type="com.ijikod.gmbn_youtube.presentation.VideoDetailsViewModel" />
-    </data>
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -37,9 +31,7 @@
                     android:layout_height="fill_parent"
                     android:textSize="18sp"
                     android:textAlignment="center"
-                    android:scrollbars="none"
-                    android:text="@{vm.selectedVideoItem.snippet.description}"/>
-
+                    android:scrollbars="none"/>
             </LinearLayout>
         </ScrollView>
 

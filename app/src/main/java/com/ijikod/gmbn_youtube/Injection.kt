@@ -28,10 +28,6 @@ object Injection {
      * [ViewModel] objects.
      */
     fun provideViewModelFactory(context: Context): ViewModelProvider.Factory {
-        return ViewModelFactory(
-            provideVideoRepository(
-                context
-            )
-        )
+        return ViewModelFactory(provideVideoRepository(context))
     }
 }
