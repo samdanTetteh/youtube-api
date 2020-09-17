@@ -1,4 +1,4 @@
-package com.ijikod.gmbn_youtube.utils
+package com.ijikod.gmbn_youtube
 
 import android.content.Context
 import androidx.lifecycle.ViewModelProvider

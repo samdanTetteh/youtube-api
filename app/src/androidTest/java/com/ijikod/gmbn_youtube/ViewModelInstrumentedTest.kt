@@ -6,7 +6,6 @@ import androidx.paging.PagedList
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.ijikod.gmbn_youtube.TestUtils.Mokito
-import com.ijikod.gmbn_youtube.utils.Injection
 import com.ijikod.gmbn_youtube.data.models.Item
 import com.ijikod.gmbn_youtube.presentation.VideosListViewModel
 import org.junit.Before
