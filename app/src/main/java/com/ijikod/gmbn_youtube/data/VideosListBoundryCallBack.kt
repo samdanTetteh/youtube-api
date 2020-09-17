@@ -5,8 +5,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.paging.PagedList
 import com.ijikod.gmbn_youtube.R
 import com.ijikod.gmbn_youtube.app.GMBNApplication.Companion.appContext
-import com.ijikod.gmbn_youtube.data.modules.Item
-import com.ijikod.gmbn_youtube.data.modules.RemoteTokens
+import com.ijikod.gmbn_youtube.data.models.Item
+import com.ijikod.gmbn_youtube.data.models.RemoteTokens
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch

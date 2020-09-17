@@ -3,8 +3,8 @@ package com.ijikod.gmbn_youtube.vm
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.ijikod.gmbn_youtube.data.VideosRepository
-import com.ijikod.gmbn_youtube.data.modules.Item
-import com.ijikod.gmbn_youtube.data.modules.VideoItem
+import com.ijikod.gmbn_youtube.data.models.Item
+import com.ijikod.gmbn_youtube.data.models.VideoItem
 
 
 /**
