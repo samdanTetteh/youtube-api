@@ -1,12 +1,10 @@
 package com.ijikod.gmbn_youtube.data.Cache
 
-import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.ijikod.gmbn_youtube.data.modules.Item
-import com.ijikod.gmbn_youtube.data.modules.VideoItem
+import com.ijikod.gmbn_youtube.data.models.VideoItem
 
 /**
  * Database Access Object to retrieve and insert data into database

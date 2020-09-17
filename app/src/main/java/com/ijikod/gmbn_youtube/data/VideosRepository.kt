@@ -8,7 +8,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.paging.*
 import com.ijikod.gmbn_youtube.app.GMBNApplication.Companion.appContext
 import com.ijikod.gmbn_youtube.data.Cache.VideoDatabase
-import com.ijikod.gmbn_youtube.data.modules.*
+import com.ijikod.gmbn_youtube.data.models.*
 import com.ijikod.gmbn_youtube.data.remote.API_KEY
 import com.ijikod.gmbn_youtube.data.remote.CHANNEL_ID
 import com.ijikod.gmbn_youtube.data.remote.VideosApiService
@@ -31,7 +31,6 @@ class VideosRepository(private val service : VideosApiService, private val datab
     lateinit var networkErrors : LiveData<String>
 
 
-
     /**
      * [VideosRepository] class to load data from local repository to serve as single sauce of truth
      * **/
@@ -49,7 +48,6 @@ class VideosRepository(private val service : VideosApiService, private val datab
         videoListData = LivePagedListBuilder(dataSourceFactory, MAX_PAGE_SIZE).setBoundaryCallback(videosListBoundryCallBack).build()
 
         return VideoListResults(videoListData, networkErrors)
-
     }
 
     /**

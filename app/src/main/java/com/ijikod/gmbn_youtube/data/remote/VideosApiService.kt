@@ -1,9 +1,8 @@
 package com.ijikod.gmbn_youtube.data.remote
 
-import com.ijikod.gmbn_youtube.data.modules.VideoComments
-import com.ijikod.gmbn_youtube.data.modules.VideoDetailsData
-import com.ijikod.gmbn_youtube.data.modules.VideosData
-import retrofit2.Call
+import com.ijikod.gmbn_youtube.data.models.VideoComments
+import com.ijikod.gmbn_youtube.data.models.VideoDetailsData
+import com.ijikod.gmbn_youtube.data.models.VideosData
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Query

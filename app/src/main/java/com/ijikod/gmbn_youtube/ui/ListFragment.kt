@@ -15,11 +15,10 @@ import androidx.paging.PagedList
 import com.ijikod.gmbn_youtube.Injection
 import com.ijikod.gmbn_youtube.R
 import com.ijikod.gmbn_youtube.databinding.FragmentListBinding
-import com.ijikod.gmbn_youtube.data.modules.Item
+import com.ijikod.gmbn_youtube.data.models.Item
 import com.ijikod.gmbn_youtube.ui.adapters.VideoListAdapter
 import com.ijikod.gmbn_youtube.vm.VideoDetailsViewModel
 import com.ijikod.gmbn_youtube.vm.VideosListViewModel
-import kotlinx.coroutines.Job
 
 /**
  * [Fragment] class to display video list

@@ -7,7 +7,7 @@ import android.widget.TextView
 import androidx.core.text.HtmlCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.ijikod.gmbn_youtube.R
-import com.ijikod.gmbn_youtube.data.modules.TopLevelComment
+import com.ijikod.gmbn_youtube.data.models.TopLevelComment
 
 class CommentAdapter(private val comments : List<TopLevelComment>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
@@ -38,6 +38,5 @@ class CommentAdapter(private val comments : List<TopLevelComment>) : RecyclerVie
             commentTxt.text = comment.snippet.textDisplay?.let { HtmlCompat.fromHtml(it, HtmlCompat.FROM_HTML_MODE_LEGACY) }
             authorTxt.text = comment.snippet.authorDisplayName
         }
-
     }
 }

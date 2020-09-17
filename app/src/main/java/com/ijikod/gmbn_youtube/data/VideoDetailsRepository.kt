@@ -2,19 +2,16 @@ package com.ijikod.gmbn_youtube.data
 
 import android.content.Context
 import android.net.ConnectivityManager
-import android.widget.Toast
 import androidx.annotation.WorkerThread
 import androidx.lifecycle.MutableLiveData
-import com.ijikod.gmbn_youtube.R
 import com.ijikod.gmbn_youtube.app.GMBNApplication
 import com.ijikod.gmbn_youtube.data.Cache.VideoDatabase
-import com.ijikod.gmbn_youtube.data.modules.VideoItem
+import com.ijikod.gmbn_youtube.data.models.VideoItem
 import com.ijikod.gmbn_youtube.data.remote.API_KEY
 import com.ijikod.gmbn_youtube.data.remote.VideosApiService
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
 
 /**
