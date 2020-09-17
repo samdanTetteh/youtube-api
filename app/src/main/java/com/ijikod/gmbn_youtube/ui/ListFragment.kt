@@ -17,8 +17,8 @@ import com.ijikod.gmbn_youtube.R
 import com.ijikod.gmbn_youtube.databinding.FragmentListBinding
 import com.ijikod.gmbn_youtube.data.models.Item
 import com.ijikod.gmbn_youtube.ui.adapters.VideoListAdapter
-import com.ijikod.gmbn_youtube.vm.VideoDetailsViewModel
-import com.ijikod.gmbn_youtube.vm.VideosListViewModel
+import com.ijikod.gmbn_youtube.presentation.VideoDetailsViewModel
+import com.ijikod.gmbn_youtube.presentation.VideosListViewModel
 
 /**
  * [Fragment] class to display video list

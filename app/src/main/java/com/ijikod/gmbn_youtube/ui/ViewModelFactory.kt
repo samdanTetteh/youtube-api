@@ -3,8 +3,8 @@ package com.ijikod.gmbn_youtube.ui
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.ijikod.gmbn_youtube.data.VideosRepository
-import com.ijikod.gmbn_youtube.vm.VideoDetailsViewModel
-import com.ijikod.gmbn_youtube.vm.VideosListViewModel
+import com.ijikod.gmbn_youtube.presentation.VideoDetailsViewModel
+import com.ijikod.gmbn_youtube.presentation.VideosListViewModel
 
 /**
  * Factory for ViewModels
