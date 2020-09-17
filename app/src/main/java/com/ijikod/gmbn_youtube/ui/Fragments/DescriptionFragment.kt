@@ -1,4 +1,4 @@
-package com.ijikod.gmbn_youtube.ui
+package com.ijikod.gmbn_youtube.ui.Fragments
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
-import com.ijikod.gmbn_youtube.Injection
+import com.ijikod.gmbn_youtube.utils.Injection
 import com.ijikod.gmbn_youtube.R
 import com.ijikod.gmbn_youtube.databinding.FragmentDecsriptionBinding
 import com.ijikod.gmbn_youtube.presentation.VideoDetailsViewModel

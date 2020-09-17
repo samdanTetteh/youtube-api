@@ -1,10 +1,12 @@
-package com.ijikod.gmbn_youtube
+package com.ijikod.gmbn_youtube.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupWithNavController
+import com.ijikod.gmbn_youtube.R
+import com.ijikod.gmbn_youtube.ui.Factory.VideoFragmentFactory
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -22,7 +24,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        supportFragmentManager.fragmentFactory = VideoFragmentFactory()
+        supportFragmentManager.fragmentFactory =
+            VideoFragmentFactory()
         // setup toolbar with navigation component
         toolbar.setupWithNavController(navHostFragment.navController, appBarConfiguration)
     }

@@ -1,7 +1,7 @@
-package com.ijikod.gmbn_youtube
+package com.ijikod.gmbn_youtube.ui.Factory
 
 import androidx.fragment.app.FragmentFactory
-import com.ijikod.gmbn_youtube.ui.DetailsFragment
+import com.ijikod.gmbn_youtube.ui.Fragments.DetailsFragment
 
 class VideoFragmentFactory : FragmentFactory(){
 

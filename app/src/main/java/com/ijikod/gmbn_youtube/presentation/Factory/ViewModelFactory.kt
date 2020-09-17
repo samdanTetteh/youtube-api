@@ -1,4 +1,4 @@
-package com.ijikod.gmbn_youtube.ui
+package com.ijikod.gmbn_youtube.presentation.Factory
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
@@ -15,10 +15,14 @@ class ViewModelFactory(private val repository: VideosRepository) : ViewModelProv
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(VideosListViewModel::class.java)) {
             @Suppress("UNCHECKED_CAST")
-            return VideosListViewModel(repository) as T
+            return VideosListViewModel(
+                repository
+            ) as T
         }else if (modelClass.isAssignableFrom(VideoDetailsViewModel::class.java)){
             @Suppress("UNCHECKED_CAST")
-            return VideoDetailsViewModel(repository) as T
+            return VideoDetailsViewModel(
+                repository
+            ) as T
         }
         throw IllegalArgumentException("Unknown ViewModel class")
     }
