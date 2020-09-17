@@ -6,8 +6,9 @@
     <data>
         <variable
             name="vm"
-            type="com.ijikod.gmbn_youtube.presentation.VideoDetailsViewModel" />
+            type="com.ijikod.gmbn_youtube.presentation.ShareViewModel" />
     </data>
+
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"

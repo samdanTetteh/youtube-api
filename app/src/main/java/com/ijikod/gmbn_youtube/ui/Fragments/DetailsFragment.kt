@@ -17,9 +17,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.ijikod.gmbn_youtube.Injection
 import com.ijikod.gmbn_youtube.R
 import com.ijikod.gmbn_youtube.databinding.FragmentDetailsBinding
+import com.ijikod.gmbn_youtube.presentation.ShareViewModel
 import com.ijikod.gmbn_youtube.ui.adapters.CommentAdapter
 import com.ijikod.gmbn_youtube.presentation.VideoDetailsViewModel
-import com.ijikod.gmbn_youtube.ui.DetailsFragmentDirections
+
 
 /**
  * A simple [Fragment] subclass to display movie details fragment
@@ -27,7 +28,8 @@ import com.ijikod.gmbn_youtube.ui.DetailsFragmentDirections
 class DetailsFragment : Fragment() {
 
     private lateinit var recyclerView: RecyclerView
-    private lateinit var sharedViewModel : VideoDetailsViewModel
+    private lateinit var videoDetailsViewModel : VideoDetailsViewModel
+    private lateinit var shareViewModel: ShareViewModel
     lateinit var adapter: CommentAdapter
     lateinit var durationTxt : TextView
     lateinit var viewMoreTxt : TextView
@@ -37,7 +39,7 @@ class DetailsFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        sharedViewModel = ViewModelProvider(requireActivity(), Injection
+        videoDetailsViewModel = ViewModelProvider(requireActivity(), Injection
             .provideViewModelFactory(requireActivity())).get(VideoDetailsViewModel::class.java)
 
     }
@@ -47,15 +49,21 @@ class DetailsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val binding : FragmentDetailsBinding  = DataBindingUtil.inflate(inflater, R.layout.fragment_details, container, false)
+        val binding  = FragmentDetailsBinding.inflate(inflater, container, false)
         // Use data binding to bind data to views
-        binding.vm = sharedViewModel
 
         initPage(binding)
-
+        setInitialData(binding)
         loadDetailsData()
         loadVideoComments()
         return binding.root
+    }
+
+    // show initially stored data
+    private fun setInitialData(binding : FragmentDetailsBinding){
+        shareViewModel = ViewModelProvider(requireActivity(), Injection
+            .provideViewModelFactory(requireActivity())).get(ShareViewModel::class.java)
+        binding.vm = shareViewModel
     }
 
     private fun initPage(binding : FragmentDetailsBinding){
@@ -74,10 +82,10 @@ class DetailsFragment : Fragment() {
 
     private fun loadDetailsData(){
         // Call function to load data from repository
-        sharedViewModel.selectedVideo.value?.id?.videoId?.let { sharedViewModel.getVideoDetails(it) }
+        shareViewModel.selectedVideo.value?.id?.videoId?.let { videoDetailsViewModel.getVideoDetails(it) }
 
         // Subscribe to listen on object changes from view model using live data
-        sharedViewModel.videoDetailsData.observe(viewLifecycleOwner, Observer { videoItemList ->
+        videoDetailsViewModel.videoDetailsData.observe(viewLifecycleOwner, Observer { videoItemList ->
             if (videoItemList == null){
                 Toast.makeText(requireActivity(), getString(R.string.internet_error_txt), Toast.LENGTH_LONG).show()
                 viewMoreTxt.visibility  = View.INVISIBLE
@@ -87,7 +95,8 @@ class DetailsFragment : Fragment() {
                 viewMoreTxt.visibility  = View.VISIBLE
                 // Move to details fragment to show full description details
                 viewMoreTxt.setOnClickListener {
-                    sharedViewModel.setSelectedVideoItem(videoItemList[0])
+//                    videoDetailsViewModel.setSelectedVideoItem(videoItemList[0])
+                    shareViewModel.setFullVideoDescription(videoItemList[0].snippet.description)
                     findNavController().navigate(DetailsFragmentDirections.actionDetailsFragmentToDescriptionFragment())
                 }
             }
@@ -97,10 +106,10 @@ class DetailsFragment : Fragment() {
 
     private fun loadVideoComments(){
         // Call function to load data from repository
-        sharedViewModel.selectedVideo.value?.id?.videoId?.let { sharedViewModel.getVideoComments(it) }
+        shareViewModel.selectedVideo.value?.id?.videoId?.let { videoDetailsViewModel.getVideoComments(it) }
 
         // Subscribe to listen on object changes from view model using live data
-        sharedViewModel.videoCommentsData.observe(viewLifecycleOwner, Observer {
+        videoDetailsViewModel.videoCommentsData.observe(viewLifecycleOwner, Observer {
             if (it == null){
                 hideCommentsList()
                 Toast.makeText(requireActivity(), getString(R.string.internet_error_txt), Toast.LENGTH_LONG).show()

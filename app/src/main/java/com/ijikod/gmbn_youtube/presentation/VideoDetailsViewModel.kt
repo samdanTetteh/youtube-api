@@ -12,14 +12,6 @@ import com.ijikod.gmbn_youtube.data.models.VideoItem
  * **/
 class VideoDetailsViewModel(private val repository: VideosRepository) : ViewModel() {
 
-     // Shared video item between details and list fragment
-    val selectedVideo : MutableLiveData<Item> = MutableLiveData()
-
-    /**
-     * Shared [VideoItem] to display video details
-     * **/
-    val selectedVideoItem : MutableLiveData<VideoItem> = MutableLiveData()
-
     // Details data emitted from repository
      val videoDetailsData = repository.videoDetailsData
 
@@ -41,18 +33,5 @@ class VideoDetailsViewModel(private val repository: VideosRepository) : ViewMode
         repository.getDetailsData(videoId)
     }
 
-    /**
-     * Set value to Shared video [Item] used in Details View
-     * **/
-     fun setSelectedVideo(video : Item){
-        selectedVideo.value = video
-    }
-
-    /**
-     * Set value to Shared [VideoItem] used in Details View
-     * **/
-    fun setSelectedVideoItem(video : VideoItem){
-        selectedVideoItem.value = video
-    }
 
 }
