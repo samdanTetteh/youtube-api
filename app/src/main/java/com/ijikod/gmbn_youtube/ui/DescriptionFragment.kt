@@ -10,8 +10,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.ijikod.gmbn_youtube.Injection
 import com.ijikod.gmbn_youtube.R
 import com.ijikod.gmbn_youtube.databinding.FragmentDecsriptionBinding
-import com.ijikod.gmbn_youtube.databinding.FragmentDetailsBinding
-import com.ijikod.gmbn_youtube.vm.VideoDetailsViewModel
+import com.ijikod.gmbn_youtube.presentation.VideoDetailsViewModel
 
 
 /**

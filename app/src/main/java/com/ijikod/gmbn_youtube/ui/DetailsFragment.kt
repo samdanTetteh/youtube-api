@@ -18,7 +18,7 @@ import com.ijikod.gmbn_youtube.Injection
 import com.ijikod.gmbn_youtube.R
 import com.ijikod.gmbn_youtube.databinding.FragmentDetailsBinding
 import com.ijikod.gmbn_youtube.ui.adapters.CommentAdapter
-import com.ijikod.gmbn_youtube.vm.VideoDetailsViewModel
+import com.ijikod.gmbn_youtube.presentation.VideoDetailsViewModel
 
 /**
  * A simple [Fragment] subclass to display movie details fragment

@@ -1,4 +1,4 @@
-package com.ijikod.gmbn_youtube.vm
+package com.ijikod.gmbn_youtube.presentation
 
 import androidx.lifecycle.*
 import androidx.paging.PagedList

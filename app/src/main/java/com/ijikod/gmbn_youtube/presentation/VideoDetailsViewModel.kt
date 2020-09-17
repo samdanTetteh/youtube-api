@@ -1,4 +1,4 @@
-package com.ijikod.gmbn_youtube.vm
+package com.ijikod.gmbn_youtube.presentation
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -13,12 +13,12 @@ import com.ijikod.gmbn_youtube.data.models.VideoItem
 class VideoDetailsViewModel(private val repository: VideosRepository) : ViewModel() {
 
      // Shared video item between details and list fragment
-    val selectedVideo : MutableLiveData<Item> = MutableLiveData<Item>()
+    val selectedVideo : MutableLiveData<Item> = MutableLiveData()
 
     /**
      * Shared [VideoItem] to display video details
      * **/
-    val selectedVideoItem : MutableLiveData<VideoItem> = MutableLiveData<VideoItem>()
+    val selectedVideoItem : MutableLiveData<VideoItem> = MutableLiveData()
 
     // Details data emitted from repository
      val videoDetailsData = repository.videoDetailsData
