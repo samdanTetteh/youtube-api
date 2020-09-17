@@ -14,7 +14,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
-import com.ijikod.gmbn_youtube.utils.Injection
+import com.ijikod.gmbn_youtube.Injection
 import com.ijikod.gmbn_youtube.R
 import com.ijikod.gmbn_youtube.databinding.FragmentDetailsBinding
 import com.ijikod.gmbn_youtube.ui.adapters.CommentAdapter

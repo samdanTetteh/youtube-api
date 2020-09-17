@@ -12,7 +12,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.paging.PagedList
-import com.ijikod.gmbn_youtube.utils.Injection
+import com.ijikod.gmbn_youtube.Injection
 import com.ijikod.gmbn_youtube.R
 import com.ijikod.gmbn_youtube.databinding.FragmentListBinding
 import com.ijikod.gmbn_youtube.data.models.Item
