@@ -11,18 +11,18 @@ import com.ijikod.gmbn_youtube.data.modules.VideoListResults
  * With lifecycle aware capabilities [VideosRepository] with transform data from repository
  * to coroutines flow paging data to serve the UI
  * **/
-class VideosListViewModel (private val repository: VideosRepository) : ViewModel() {
+class VideosListViewModel(private val repository: VideosRepository) : ViewModel() {
 
     private val videoLiveData = MutableLiveData<VideoListResults>()
 
-    var videos: LiveData<PagedList<Item>> = Transformations.switchMap(videoLiveData){
+    var videos: LiveData<PagedList<Item>> = videoLiveData.switchMap {
         repository.videoListData
     }
-    var networkErrors: LiveData<String> = Transformations.switchMap(videoLiveData){
+    var networkErrors: LiveData<String> = videoLiveData.switchMap {
         repository.networkErrors
     }
 
-    fun getNewVideos(isRefreshing : Boolean){
+    fun getNewVideos(isRefreshing: Boolean) {
         videoLiveData.value = repository.listVideos(isRefreshing)
     }
 }
