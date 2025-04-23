@@ -1,4 +1,6 @@
 [versions]
+androidGradlePlugin = "7.4.1"
+
 core_ktx = "1.15.0"
 app_compat = "1.7.0"
 constraint_layout = "1.1.3"
@@ -12,10 +14,10 @@ paging = "2.1.0-alpha01"
 navigation = "2.3.0-beta01"
 retrofit = "2.6.0"
 glide = "4.11.0"
-androidx_junit = "1.2.1"
 androidx_truth = "1.6.0"
 google_truth = "0.42"
 junit_rules = "1.6.2"
+junit_test_rules = "1.6.1"
 mockito_core = "2.7.22"
 mockito_android = "2.25.0"
 androidx_arch = "2.0.0"
@@ -55,13 +57,12 @@ bumptech-glide-compiler = { group = "com.github.bumptech.glide", name = "compile
 
 
 #Testing
-androidx_junit = { group = "androidx.test", name = "ext:junit", version.ref = "junit_test" }
+androidx_junit = { group = "androidx.test.ext", name = "junit", version.ref = "junit_test" }
 androidx_espresso_core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espresso_test" }
 androidx_espresso_contrib = { group = "androidx.test.espresso", name = "espresso-contrib", version.ref = "espresso_test" }
-androidx_test_junit = { group = "androidx.test.ext", name = "junit", version.ref = "androidx_junit" }
 androidx_test_truth = { group = "androidx.test.ext", name = "truth", version.ref = "androidx_truth" }
 androidx_test_runner = { group = "androidx.test", name = "runner", version.ref = "junit_rules" }
-androidx_test_rules = { group = "androidx.test", name = "rules", version.ref = "junit_rules" }
+androidx_test_rules = { group = "androidx.test", name = "rules", version.ref = "junit_test_rules" }
 androidx_arch_core = { group = "androidx.arch.core", name = "core-testing", version.ref = "androidx_arch" }
 androidx-fragment_testing = { group = "androidx.fragment", name = "fragment-testing", version.ref = "fragment_ktx" }
 mockito_core = { group = "org.mockito", name = "mockito-core", version.ref = "mockito_core" }
@@ -71,3 +72,4 @@ junit = { group = "junit", name = "junit", version.ref = "junit" }
 
 
 [plugins]
+android-application = { id = "com.android.application", version.ref = "androidGradlePlugin" }

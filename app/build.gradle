@@ -1,8 +1,10 @@
-apply plugin: 'com.android.application'
-apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-parcelize'
-apply plugin: 'kotlin-kapt'
-apply plugin: "androidx.navigation.safeargs.kotlin"
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+    id 'kotlin-parcelize'
+    id 'kotlin-kapt'
+    id 'androidx.navigation.safeargs.kotlin'
+}
 
 android {
     namespace "com.ijikod.gmbn_youtube"
@@ -45,61 +47,58 @@ android {
 
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
-    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     implementation libs.androidx.core.ktx
     implementation libs.androidx.app.compat
     implementation libs.androidx.constraint.layout
     implementation libs.androidx.legacy.support
     testImplementation libs.junit
-    androidTestImplementation libs.androidx.test.junit
     androidTestImplementation libs.androidx.espresso.core
 
     // architecture components
-    implementation "androidx.core:core-ktx:$core_version"
-    implementation "androidx.lifecycle:lifecycle-extensions:$life_cycle_version"
-    implementation "androidx.lifecycle:lifecycle-runtime-ktx:$life_cycle_version"
-    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$life_cycle_version"
-    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$life_cycle_version"
-    implementation "androidx.room:room-runtime:$room_version"
-    implementation "androidx.room:room-ktx:$room_version"
-    implementation "androidx.paging:paging-runtime:$paging_version"
-    implementation "androidx.room:room-runtime:$room_version"
-    kapt "androidx.room:room-compiler:$room_version"
+    implementation libs.androidx.lifecycle.extensions
+    implementation libs.androidx.lifecycle.runtime.ktx
+    implementation libs.androidx.lifecycle.viewmodel.ktx
+    implementation libs.androidx.lifecycle.livedate.ktx
+    implementation libs.androidx.room.runtime
+    implementation libs.androidx.room.ktx
+    implementation libs.androidx.paging.runtime
+    implementation libs.androidx.room.runtime
+    kapt libs.androidc.room.compiler
 
     // Navigation
-    implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
-    implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
+    implementation libs.androidx.fragment.navigation.ktx
+    implementation libs.androidx.navigation.ui.ktx
 
     //Retrofit
-    implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
-    implementation"com.squareup.retrofit2:converter-gson:$retrofit_version"
-    implementation "com.squareup.retrofit2:converter-moshi:$retrofit_version"
+    implementation libs.square.retrofit2
+    implementation libs.square.retrofit2.gson.converter
+    implementation libs.square.retrofit2.moshi.converter
 
     //Glide
-    implementation "com.github.bumptech.glide:glide:$glide_version"
-    kapt "com.github.bumptech.glide:compiler:$glide_version"
+    implementation libs.bumptech.glide
+    kapt libs.bumptech.glide.compiler
 
     // Assertions
-    androidTestImplementation 'androidx.test.ext:junit:1.2.1'
-    androidTestImplementation 'androidx.test.ext:truth:1.6.0'
-    androidTestImplementation 'com.google.truth:truth:0.42'
+    androidTestImplementation libs.androidx.junit
+    androidTestImplementation libs.androidx.test.truth
+    androidTestImplementation libs.google.truth
 
     // Espresso
-    androidTestImplementation "androidx.test.espresso:espresso-core:$espresso_core"
-    androidTestImplementation "androidx.test.espresso:espresso-contrib:$espresso_core"
+    androidTestImplementation libs.androidx.espresso.core
+    androidTestImplementation libs.androidx.espresso.contrib
 
     // AndroidJUnitRunner and JUnit Rules
-    androidTestImplementation "androidx.test:runner:$junit_rules"
-    androidTestImplementation "androidx.test:rules:1.6.1"
+    androidTestImplementation libs.androidx.test.runner
+    androidTestImplementation libs.androidx.test.rules
 
     // Mockito
-    androidTestImplementation "org.mockito:mockito-core:2.7.22"
-    androidTestImplementation "org.mockito:mockito-android:2.25.0"
-    androidTestImplementation "androidx.arch.core:core-testing:2.0.0"
+    androidTestImplementation libs.mockito.core
+    androidTestImplementation libs.mockito.android
+    androidTestImplementation libs.androidx.arch.core
 
     // Fragment
-    implementation 'androidx.fragment:fragment-ktx:1.8.6'
+    implementation libs.androidx.fragment.ktx
 
     // Fragment Tests
-    debugImplementation 'androidx.fragment:fragment-testing:1.8.6'
+    debugImplementation  libs.androidx.fragment.testing
 }
