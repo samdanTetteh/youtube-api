@@ -1,0 +1,73 @@
+[versions]
+core_ktx = "1.15.0"
+app_compat = "1.7.0"
+constraint_layout = "1.1.3"
+legacy_support = "1.0.0"
+junit_test = "1.2.1"
+espresso_test = "3.2.0"
+junit = "4.12"
+life_cycle = "2.2.0"
+room = "2.7.0"
+paging = "2.1.0-alpha01"
+navigation = "2.3.0-beta01"
+retrofit = "2.6.0"
+glide = "4.11.0"
+androidx_junit = "1.2.1"
+androidx_truth = "1.6.0"
+google_truth = "0.42"
+junit_rules = "1.6.2"
+mockito_core = "2.7.22"
+mockito_android = "2.25.0"
+androidx_arch = "2.0.0"
+fragment_ktx = "1.8.6"
+
+
+
+[libraries]
+androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "core_ktx" }
+androidx-app-compat = { group = "androidx.appcompat", name = "appcompat", version.ref = "app_compat" }
+androidx_constraint_layout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraint_layout" }
+androidx_legacy_support = { group = "androidx.legacy", name = "legacy-support-v4", version.ref = "legacy_support" }
+
+#Architecture components
+androidx-lifecycle-extensions = { group = "androidx.lifecycle", name = "lifecycle-extensions", version.ref = "life_cycle" }
+androidx-lifecycle-runtime-ktx = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "life_cycle" }
+androidx-lifecycle-viewmodel-ktx = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-ktx", version.ref = "life_cycle" }
+androidx-lifecycle-livedate-ktx = { group = "androidx.lifecycle", name = "lifecycle-livedata-ktx", version.ref = "life_cycle" }
+androidx-room-ktx = { group = "androidx.room", name = "room-ktx", version.ref = "room" }
+androidx-room-runtime = { group = "androidx.room", name = "room-runtime", version.ref = "room" }
+androidc-room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "room" }
+androidx-paging-runtime = { group = "androidx.paging", name = "paging-runtime", version.ref = "paging" }
+androidx-fragment_ktx = { group = "androidx.fragment", name = "fragment-ktx", version.ref = "fragment_ktx" }
+
+#Navigation
+androidx-fragment-navigation-ktx = { group = "androidx.navigation", name = "navigation-fragment-ktx", version.ref = "navigation" }
+androidx-navigation-ui-ktx = { group = "androidx.navigation", name = "navigation-ui-ktx", version.ref = "navigation" }
+
+#Retrofit
+square-retrofit2 = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit" }
+square-retrofit2-gson-converter = { group = "com.squareup.retrofit2", name = "converter-gson", version.ref = "retrofit" }
+square-retrofit2-moshi-converter = { group = "com.squareup.retrofit2", name = "converter-moshi", version.ref = "retrofit" }
+
+#Glide
+bumptech-glide = { group = "com.github.bumptech.glide", name = "glide", version.ref = "glide" }
+bumptech-glide-compiler = { group = "com.github.bumptech.glide", name = "compiler",  version.ref = "glide" }
+
+
+#Testing
+androidx_junit = { group = "androidx.test", name = "ext:junit", version.ref = "junit_test" }
+androidx_espresso_core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espresso_test" }
+androidx_espresso_contrib = { group = "androidx.test.espresso", name = "espresso-contrib", version.ref = "espresso_test" }
+androidx_test_junit = { group = "androidx.test.ext", name = "junit", version.ref = "androidx_junit" }
+androidx_test_truth = { group = "androidx.test.ext", name = "truth", version.ref = "androidx_truth" }
+androidx_test_runner = { group = "androidx.test", name = "runner", version.ref = "junit_rules" }
+androidx_test_rules = { group = "androidx.test", name = "rules", version.ref = "junit_rules" }
+androidx_arch_core = { group = "androidx.arch.core", name = "core-testing", version.ref = "androidx_arch" }
+androidx-fragment_testing = { group = "androidx.fragment", name = "fragment-testing", version.ref = "fragment_ktx" }
+mockito_core = { group = "org.mockito", name = "mockito-core", version.ref = "mockito_core" }
+mockito_android = { group = "org.mockito", name = "mockito-android", version.ref = "mockito_android" }
+google_truth = { group = "com.google.truth", name = "truth", version.ref = "google_truth" }
+junit = { group = "junit", name = "junit", version.ref = "junit" }
+
+
+[plugins]
