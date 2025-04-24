@@ -7,22 +7,22 @@ plugins {
 }
 
 android {
-    namespace "com.ijikod.gmbn_youtube"
-    compileSdk 35
+    namespace = "com.ijikod.gmbn_youtube"
+    compileSdk = 35
 
     defaultConfig {
-        applicationId "com.ijikod.gmbn_youtube"
-        minSdk 24
-        targetSdk 35
-        versionCode 1
-        versionName "1.0"
+        applicationId = "com.ijikod.gmbn_youtube"
+        minSdk = 24
+        targetSdk = 35
+        versionCode = 1
+        versionName = "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled = false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
@@ -35,42 +35,42 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
     }
 
     buildFeatures {
-        dataBinding true
-        viewBinding true
+        dataBinding = true
+        viewBinding = true
     }
 }
 
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
-    implementation libs.androidx.core.ktx
-    implementation libs.androidx.app.compat
-    implementation libs.androidx.constraint.layout
-    implementation libs.androidx.legacy.support
-    testImplementation libs.junit
-    androidTestImplementation libs.androidx.espresso.core
+    implementation (libs.androidx.core.ktx)
+    implementation (libs.androidx.app.compat)
+    implementation (libs.androidx.constraint.layout)
+    implementation (libs.androidx.legacy.support)
+    testImplementation (libs.junit)
+    androidTestImplementation (libs.androidx.espresso.core)
 
     // architecture components
-    implementation libs.androidx.lifecycle.extensions
-    implementation libs.androidx.lifecycle.runtime.ktx
-    implementation libs.androidx.lifecycle.viewmodel.ktx
-    implementation libs.androidx.lifecycle.livedate.ktx
-    implementation libs.androidx.room.runtime
-    implementation libs.androidx.room.ktx
-    implementation libs.androidx.paging.runtime
-    implementation libs.androidx.room.runtime
-    kapt libs.androidc.room.compiler
+    implementation (libs.androidx.lifecycle.extensions)
+    implementation (libs.androidx.lifecycle.runtime.ktx)
+    implementation (libs.androidx.lifecycle.viewmodel.ktx)
+    implementation (libs.androidx.lifecycle.livedate.ktx)
+    implementation (libs.androidx.room.runtime)
+    implementation (libs.androidx.room.ktx)
+    implementation (libs.androidx.paging.runtime)
+    implementation (libs.androidx.room.runtime)
+    kapt (libs.androidc.room.compiler)
 
     // Navigation
-    implementation libs.androidx.fragment.navigation.ktx
-    implementation libs.androidx.navigation.ui.ktx
+    implementation (libs.androidx.fragment.navigation.ktx)
+    implementation (libs.androidx.navigation.ui.ktx)
 
     //Retrofit
-    implementation libs.square.retrofit2
+    implementation (libs.square.retrofit2)
     implementation libs.square.retrofit2.gson.converter
     implementation libs.square.retrofit2.moshi.converter
 
