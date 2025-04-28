@@ -71,34 +71,34 @@ dependencies {
 
     //Retrofit
     implementation (libs.square.retrofit2)
-    implementation libs.square.retrofit2.gson.converter
-    implementation libs.square.retrofit2.moshi.converter
+    implementation (libs.square.retrofit2.gson.converter)
+    implementation (libs.square.retrofit2.moshi.converter)
 
     //Glide
-    implementation libs.bumptech.glide
-    kapt libs.bumptech.glide.compiler
+    implementation (libs.bumptech.glide)
+    kapt (libs.bumptech.glide.compiler)
 
     // Assertions
-    androidTestImplementation libs.androidx.junit
-    androidTestImplementation libs.androidx.test.truth
-    androidTestImplementation libs.google.truth
+    androidTestImplementation (libs.androidx.junit)
+    androidTestImplementation (libs.androidx.test.truth)
+    androidTestImplementation (libs.google.truth)
 
     // Espresso
-    androidTestImplementation libs.androidx.espresso.core
-    androidTestImplementation libs.androidx.espresso.contrib
+    androidTestImplementation (libs.androidx.espresso.core)
+    androidTestImplementation (libs.androidx.espresso.contrib)
 
     // AndroidJUnitRunner and JUnit Rules
-    androidTestImplementation libs.androidx.test.runner
-    androidTestImplementation libs.androidx.test.rules
+    androidTestImplementation (libs.androidx.test.runner)
+    androidTestImplementation (libs.androidx.test.rules)
 
     // Mockito
-    androidTestImplementation libs.mockito.core
-    androidTestImplementation libs.mockito.android
-    androidTestImplementation libs.androidx.arch.core
+    androidTestImplementation (libs.mockito.core)
+    androidTestImplementation (libs.mockito.android)
+    androidTestImplementation (libs.androidx.arch.core)
 
     // Fragment
-    implementation libs.androidx.fragment.ktx
+    implementation (libs.androidx.fragment.ktx)
 
     // Fragment Tests
-    debugImplementation  libs.androidx.fragment.testing
+    debugImplementation  (libs.androidx.fragment.testing)
 }
