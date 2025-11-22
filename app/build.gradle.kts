@@ -1,9 +1,9 @@
 plugins {
-    id 'com.android.application'
-    id 'kotlin-android'
-    id 'kotlin-parcelize'
-    id 'kotlin-kapt'
-    id 'androidx.navigation.safeargs.kotlin'
+    alias(libs.plugins.android.application)
+    alias(libs.plugins.kotlin.android)
+    id("kotlin-parcelize")
+    id("kotlin-kapt")
+    alias(libs.plugins.safe.args.plugin)
 }
 
 android {
@@ -17,27 +17,28 @@ android {
         versionCode = 1
         versionName = "1.0"
 
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
     buildTypes {
-        release {
-            minifyEnabled = false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        getByName("release") {
+            isMinifyEnabled = false // Use isMinifyEnabled in .kts files
+            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
         }
     }
 
 
-    kotlinOptions {
-        jvmTarget = "1.8"
-
-        freeCompilerArgs += ["-opt-in=kotlin.RequiresOptIn"]
-    }
-
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
+
+    // build.gradle.kts
+    kotlinOptions {
+        jvmTarget = "17"
+//        freeCompilerArgs.add("-opt-in=kotlin.RequiresOptIn")
+    }
+
 
     buildFeatures {
         dataBinding = true
@@ -46,9 +47,9 @@ android {
 }
 
 dependencies {
-    implementation fileTree(dir: "libs", include: ["*.jar"])
+    implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
     implementation (libs.androidx.core.ktx)
-    implementation (libs.androidx.app.compat)
+    implementation (libs.androidx.appcompat)
     implementation (libs.androidx.constraint.layout)
     implementation (libs.androidx.legacy.support)
     testImplementation (libs.junit)
@@ -62,17 +63,16 @@ dependencies {
     implementation (libs.androidx.room.runtime)
     implementation (libs.androidx.room.ktx)
     implementation (libs.androidx.paging.runtime)
-    implementation (libs.androidx.room.runtime)
-    kapt (libs.androidc.room.compiler)
+    kapt (libs.androidx.room.compiler)
 
     // Navigation
-    implementation (libs.androidx.fragment.navigation.ktx)
-    implementation (libs.androidx.navigation.ui.ktx)
+    implementation (libs.androidx.fragment.navigation)
+    implementation (libs.androidx.navigation.ui)
 
     //Retrofit
-    implementation (libs.square.retrofit2)
-    implementation (libs.square.retrofit2.gson.converter)
-    implementation (libs.square.retrofit2.moshi.converter)
+    implementation (libs.squareup.retrofit2)
+    implementation (libs.squareup.retrofit2.gson.converter)
+    implementation (libs.squareup.retrofit2.moshi.converter)
 
     //Glide
     implementation (libs.bumptech.glide)
