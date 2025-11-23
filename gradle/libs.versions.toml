@@ -21,7 +21,7 @@ retrofit = "3.0.0"
 okHttp3 = "5.3.0"
 roomLibrary = "2.8.4"
 coroutines = "1.10.2"
-truth = "1.4.5"
+truth = "1.7.0"
 mockito = "5.20.0"
 mockK = "1.14.6"
 roomCommonJvm = "2.8.3"
@@ -36,10 +36,16 @@ deprecatedLifecycle = "2.2.0"
 lifecycle = "2.10.0"
 paging = "3.3.6"
 moshi = "3.0.0"
+glide = "5.0.5"
+archCore = "2.2.0"
+fragment = "1.8.9"
+googleTruth = "1.1.3"
+swiperefreshlayout = "1.1.0"
+
 
 [libraries]
 # Deprecated
-androidx-legacy-support = { group = "androidx.legacy", name = "legacy-support-v", version.ref = "legacy" }
+#androidx-legacy-support = { group = "androidx.legacy", name = "legacy-support-v", version.ref = "legacy" }
 androidx-lifecycle-extensions = { group = "androidx.lifecycle", name = "lifecycle-extensions", version.ref = "deprecatedLifecycle" }
 
 # architecture components
@@ -49,7 +55,8 @@ androidx-lifecycle-livedate-ktx = { group = "androidx.lifecycle", name = "lifecy
 androidx-room-runtime = { group = "androidx.room", name = "room-runtime", version.ref = "roomLibrary" }
 androidx-room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "roomLibrary" }
 androidx-room-ktx = { group = "androidx.room", name = "room-ktx", version.ref = "roomLibrary" }
-androidx.paging.runtime = { group = "androidx.paging", name = "paging-runtime", version.ref = "paging" }
+androidx-paging-runtime = { group = "androidx.paging", name = "paging-runtime", version.ref = "paging" }
+androidx-swiperefreshlayout = { group = "androidx.swiperefreshlayout", name = "swiperefreshlayout", version.ref = "swiperefreshlayout" }
 
 # Navigation
 hilt-navigation-compose = { group = "androidx.hilt", name = "hilt-navigation-compose", version.ref = "hiltNavigation" }
@@ -62,8 +69,38 @@ androidx-navigation-ui = { group = "androidx.navigation", name = "navigation-ui"
 squareup-retrofit2 = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit" }
 squareup-retrofit2-gson-converter = { group = "com.squareup.retrofit2", name = "converter-gson", version.ref = "retrofit" }
 squareup-logging-interceptor = { group = "com.squareup.okhttp3", name = "logging-interceptor", version.ref = "okHttp3" }
-squareup-retrofit2-moshi-converter = { group = "com.squareup.retrofit2", name="onverter-moshi", version.ref = "moshi" }
+squareup-retrofit2-moshi-converter = { group = "com.squareup.retrofit2", name = "converter-moshi", version.ref = "moshi" }
 mockwebserver = { group = "com.squareup.okhttp3", name = "mockwebserver", version.ref = "okHttp3" }
+
+# Glide
+bumptech-glide = { group = "com.github.bumptech.glide", name = "glide", version.ref = "glide" }
+bumptech-glide-compiler = { group = "com.github.bumptech.glide", name = "compiler", version.ref = "glide" }
+
+# Assertions
+androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
+google-truth = { group = "com.google.truth", name = "truth", version.ref = "googleTruth" }
+androidx-test-truth = { group = "androidx.test.ext", name = "truth", version.ref = "truth" }
+
+# Espresso
+androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
+androidx-espresso-contrib = { group = "androidx.test.espresso", name = "espresso-contrib", version.ref = "espressoCore" }
+
+# AndroidJunitRunner and JUnit Rules
+androidx-test-runner = { group = "androidx.test", name = "runner", version.ref = "runner" }
+androidx-test-rules = { group = "androidx.test", name = "rules", version.ref = "testRules" }
+
+# Mockito
+mockito-core = { group = "org.mockito", name = "mockito-core", version.ref = "mockito" }
+mockito-android = { group = "org.mockito", name = "mockito-android", version.ref = "mockito" }
+
+# Test
+androidx-arch-core = { group = "androidx.arch.core", name = "core-common", version.ref = "archCore" }
+
+
+# Fragment
+androidx-fragment-ktx = { group = "androidx.fragment", name = "fragment-ktx", version.ref = "fragment" }
+androidx-fragment-testing = { group = "androidx.fragment", name = "fragment-testing", version.ref = "fragment" }
+
 
 
 # Compose
@@ -104,20 +141,17 @@ kotlinx-coroutines-android = { group = "org.jetbrains.kotlinx", name = "kotlinx-
 kotlinx-coroutines-core = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core", version.ref = "kotlin" }
 coroutines-test = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-test", version.ref = "coroutines" }
 
-google-truth = { group = "com.google.truth", name = "truth", version.ref = "truth" }
+
 androidx-activity-ktx = { group = "androidx.activity", name = "activity-ktx", version.ref = "composeActivity" }
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
-androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
-androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
 androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }
-mockito-core = { group = "org.mockito", name = "mockito-core", version.ref = "mockito" }
+
 mockk = { group = "io.mockk", name = "mockk", version.ref = "mockK" }
 mockk-android = { group = "io.mockk", name = "mockk-android", version.ref = "mockK" }
 androidx-room-common-jvm = { group = "androidx.room", name = "room-common-jvm", version.ref = "roomCommonJvm" }
-androidx-runner = { group = "androidx.test", name = "runner", version.ref = "runner" }
-androidx-test-rules = { group = "androidx.test", name = "rules", version.ref = "testRules" }
+
 
 androidx-constraint-layout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraitLayout" }
 

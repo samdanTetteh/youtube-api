@@ -8,7 +8,7 @@ plugins {
 
 android {
     namespace = "com.ijikod.gmbn_youtube"
-    compileSdk = 35
+    compileSdk = 36
 
     defaultConfig {
         applicationId = "com.ijikod.gmbn_youtube"
@@ -33,10 +33,8 @@ android {
         targetCompatibility = JavaVersion.VERSION_17
     }
 
-    // build.gradle.kts
-    kotlinOptions {
-        jvmTarget = "17"
-//        freeCompilerArgs.add("-opt-in=kotlin.RequiresOptIn")
+    kotlin {
+        jvmToolchain(17)
     }
 
 
@@ -51,7 +49,7 @@ dependencies {
     implementation (libs.androidx.core.ktx)
     implementation (libs.androidx.appcompat)
     implementation (libs.androidx.constraint.layout)
-    implementation (libs.androidx.legacy.support)
+    implementation(libs.androidx.swiperefreshlayout)
     testImplementation (libs.junit)
     androidTestImplementation (libs.androidx.espresso.core)
 
