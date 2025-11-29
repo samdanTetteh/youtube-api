@@ -71,7 +71,16 @@ git config --global user.name "Your Name"
    
    > **Note**: `git filter-branch` is deprecated. Use `git-filter-repo` when possible.
 
-   After running either option, force push to update the remote:
+   After running `git-filter-repo`, the remote origin is removed for safety. Re-add it and force push:
+   ```bash
+   # Re-add the remote (git-filter-repo removes it for safety)
+   git remote add origin https://github.com/YOUR_USERNAME/YOUR_REPO.git
+   
+   # Force push to update the remote
+   git push --force-with-lease --tags origin 'refs/heads/*'
+   ```
+   
+   For `git filter-branch`, just force push:
    ```bash
    git push --force-with-lease --tags origin 'refs/heads/*'
    ```
