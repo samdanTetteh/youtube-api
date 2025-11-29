@@ -1,4 +1,4 @@
-# Contributing to GMBN Youtube Channel
+# Contributing to GMBN YouTube Channel
 
 Thank you for your interest in contributing to this project!
 
