@@ -77,12 +77,15 @@ git config --global user.name "Your Name"
    git remote add origin https://github.com/YOUR_USERNAME/YOUR_REPO.git
    
    # Force push to update the remote
-   git push --force-with-lease --tags origin 'refs/heads/*'
+   # Use --force since local tracking info is stale after history rewrite
+   git push --force --tags origin 'refs/heads/*'
    ```
+   
+   > **Note**: If you get a "stale info" error with `--force-with-lease`, use `--force` instead. This is expected after rewriting history since your local tracking information no longer matches the remote.
    
    For `git filter-branch`, just force push:
    ```bash
-   git push --force-with-lease --tags origin 'refs/heads/*'
+   git push --force --tags origin 'refs/heads/*'
    ```
 
    **⚠️ Warning**: This rewrites history and requires a force push. Coordinate with collaborators before doing this on shared branches.
