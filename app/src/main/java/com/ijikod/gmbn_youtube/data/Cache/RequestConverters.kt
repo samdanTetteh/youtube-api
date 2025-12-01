@@ -1,9 +1,8 @@
 package com.ijikod.gmbn_youtube.data.Cache
 
 import androidx.room.TypeConverter
-import com.ijikod.gmbn_youtube.data.modules.CommentItems
-import com.ijikod.gmbn_youtube.data.modules.Item
-import com.ijikod.gmbn_youtube.data.modules.VideoComments
+import com.ijikod.gmbn_youtube.data.models.CommentItems
+import com.ijikod.gmbn_youtube.data.models.Item
 import com.squareup.moshi.JsonAdapter
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.Types

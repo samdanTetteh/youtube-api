@@ -1,24 +1,16 @@
-package com.ijikod.gmbn_youtube.vm
+package com.ijikod.gmbn_youtube.presentation
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.ijikod.gmbn_youtube.data.VideosRepository
-import com.ijikod.gmbn_youtube.data.modules.Item
-import com.ijikod.gmbn_youtube.data.modules.VideoItem
+import com.ijikod.gmbn_youtube.data.models.Item
+import com.ijikod.gmbn_youtube.data.models.VideoItem
 
 
 /**
  * Shared View Model class serving as a bridge between repository anf UI
  * **/
 class VideoDetailsViewModel(private val repository: VideosRepository) : ViewModel() {
-
-     // Shared video item between details and list fragment
-    val selectedVideo : MutableLiveData<Item> = MutableLiveData<Item>()
-
-    /**
-     * Shared [VideoItem] to display video details
-     * **/
-    val selectedVideoItem : MutableLiveData<VideoItem> = MutableLiveData<VideoItem>()
 
     // Details data emitted from repository
      val videoDetailsData = repository.videoDetailsData
@@ -41,18 +33,5 @@ class VideoDetailsViewModel(private val repository: VideosRepository) : ViewMode
         repository.getDetailsData(videoId)
     }
 
-    /**
-     * Set value to Shared video [Item] used in Details View
-     * **/
-     fun setSelectedVideo(video : Item){
-        selectedVideo.value = video
-    }
-
-    /**
-     * Set value to Shared [VideoItem] used in Details View
-     * **/
-    fun setSelectedVideoItem(video : VideoItem){
-        selectedVideoItem.value = video
-    }
 
 }

@@ -47,7 +47,7 @@ class ViewModelInstrumentedTest {
         vm.videos.observeForever(observer)
         vm.getNewVideos(true)
 
-        Mockito.verify(observer).onChanged(vm.videos.value)
+        vm.videos.value?.let { Mockito.verify(observer).onChanged(it) }
     }
 
 

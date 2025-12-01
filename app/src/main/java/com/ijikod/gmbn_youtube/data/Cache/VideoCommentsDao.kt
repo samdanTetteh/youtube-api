@@ -1,9 +1,7 @@
 package com.ijikod.gmbn_youtube.data.Cache
 
 import androidx.room.*
-import com.ijikod.gmbn_youtube.data.modules.CommentItems
-import com.ijikod.gmbn_youtube.data.modules.TopLevelComment
-import com.ijikod.gmbn_youtube.data.modules.VideoComments
+import com.ijikod.gmbn_youtube.data.models.TopLevelComment
 
 /**
  * Data access object for local video comments data manipulation

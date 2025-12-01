@@ -1,9 +1,8 @@
-package com.ijikod.gmbn_youtube.data.modules
+package com.ijikod.gmbn_youtube.data.models
 
 import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.Ignore
-import androidx.room.PrimaryKey
 
 /**
  * [Entity] class to hold video comments
