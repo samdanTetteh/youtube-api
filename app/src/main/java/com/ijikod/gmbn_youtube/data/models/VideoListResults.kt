@@ -1,4 +1,4 @@
-package com.ijikod.gmbn_youtube.data.models
+package com.ijikod.gmbn_youtube.data.modules
 
 import androidx.lifecycle.LiveData
 import androidx.paging.PagedList

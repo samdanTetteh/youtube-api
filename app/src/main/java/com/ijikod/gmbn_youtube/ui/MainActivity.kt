@@ -1,13 +1,11 @@
-package com.ijikod.gmbn_youtube.ui
+package com.ijikod.gmbn_youtube
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupWithNavController
-import com.ijikod.gmbn_youtube.R
-import com.ijikod.gmbn_youtube.ui.Factory.VideoFragmentFactory
-import kotlinx.android.synthetic.main.activity_main.*
+import com.ijikod.gmbn_youtube.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
@@ -15,18 +13,21 @@ class MainActivity : AppCompatActivity() {
         supportFragmentManager.findFragmentById(R.id.nav_holder) as NavHostFragment
     }
 
-    private val appBarConfiguration : AppBarConfiguration by lazy {
+    private val appBarConfiguration: AppBarConfiguration by lazy {
         AppBarConfiguration(navHostFragment.navController.graph)
     }
+
+    private lateinit var binding: ActivityMainBinding
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-
-        supportFragmentManager.fragmentFactory =
-            VideoFragmentFactory()
-        // setup toolbar with navigation component
-        toolbar.setupWithNavController(navHostFragment.navController, appBarConfiguration)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        val view = binding.root
+        binding.apply {
+            setContentView(root)
+            // setup toolbar with navigation component
+            toolbar.setupWithNavController(navHostFragment.navController, appBarConfiguration)
+        }
     }
 }
