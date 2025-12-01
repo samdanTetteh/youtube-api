@@ -13,6 +13,7 @@ import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.rule.ActivityTestRule
+import com.ijikod.gmbn_youtube.ui.MainActivity
 import com.ijikod.gmbn_youtube.ui.adapters.VideoViewHolder
 import org.hamcrest.CoreMatchers
 import org.junit.Assert
