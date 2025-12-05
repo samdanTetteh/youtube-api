@@ -3,7 +3,7 @@ package com.ijikod.gmbn_youtube.vm
 import androidx.lifecycle.*
 import androidx.paging.PagedList
 import com.ijikod.gmbn_youtube.data.VideosRepository
-import com.ijikod.gmbn_youtube.data.modules.Item
+import com.ijikod.gmbn_youtube.data.models.Item
 import com.ijikod.gmbn_youtube.data.modules.VideoListResults
 
 /**

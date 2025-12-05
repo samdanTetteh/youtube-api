@@ -5,8 +5,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.paging.PagedList
 import com.ijikod.gmbn_youtube.R
 import com.ijikod.gmbn_youtube.app.GMBNApplication.Companion.appContext
-import com.ijikod.gmbn_youtube.data.modules.Item
-import com.ijikod.gmbn_youtube.data.modules.RemoteTokens
+import com.ijikod.gmbn_youtube.data.models.Item
+import com.ijikod.gmbn_youtube.data.models.RemoteTokens
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -53,22 +53,24 @@ class VideosListBoundryCallBack (private val repository: VideosRepository) : Pag
                 }
             }
 
-            repository.getVideosFromNetwork(requestToken, {
-                it.items?.let { items ->
-                    repository.insertVideos(items){
-                        val token = RemoteTokens(nextToken = it.nextPageToken)
-                        // Save next token for tracking
-                        repository.insertToken(token)
-                        requestToken = it.nextPageToken
-                        isRequestInProgress = false
+            CoroutineScope(Dispatchers.IO).launch {
+                repository.getVideosFromNetwork(requestToken, {
+                    it.items?.let { items ->
+                        repository.insertVideos(items){
+                            val token = RemoteTokens(nextToken = it.nextPageToken)
+                            // Save next token for tracking
+                            repository.insertToken(token)
+                            requestToken = it.nextPageToken
+                            isRequestInProgress = false
+                        }
                     }
-                }
 
-                _networkErrors.postValue("")
-            }, { error ->
-                _networkErrors.postValue(error)
-                isRequestInProgress = false
-            })
+                    _networkErrors.postValue("")
+                }, { error ->
+                    _networkErrors.postValue(error)
+                    isRequestInProgress = false
+                })
+            }
 
         }  else{
             _networkErrors.postValue(appContext.getString(R.string.internet_error_txt))

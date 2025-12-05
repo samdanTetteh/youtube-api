@@ -4,7 +4,7 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.ijikod.gmbn_youtube.data.models.VideoItem
+import com.ijikod.gmbn_youtube.data.modules.VideoItem
 
 /**
  * Database Access Object to retrieve and insert data into database
