@@ -18,7 +18,7 @@ android {
         versionCode = 1
         versionName = "1.0"
 
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner = "di.CustomHiltTestRunner"
     }
 
     buildTypes {
@@ -79,6 +79,8 @@ dependencies {
 
     //DI
     implementation (libs.android.hilt)
+    kspAndroidTest(libs.android.hilt.test)
+    androidTestImplementation (libs.android.hilt.test)
     ksp (libs.hilt.android.compiler)
 
 

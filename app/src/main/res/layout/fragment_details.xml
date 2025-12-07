@@ -16,7 +16,6 @@
 
         <ImageView
             android:id="@+id/imageView"
-            imageUrl="@{vm.selectedVideo.snippet.thumbnails.high.url}"
             android:layout_width="match_parent"
             android:layout_height="220dp"
             android:layout_marginBottom="5dp"
@@ -36,7 +35,6 @@
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:contentDescription="@string/movie_title_txt"
-            htmlTxt="@{vm.selectedVideo.snippet.title}"
             android:textSize="15sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toTopOf="@+id/duration__Lbl"
@@ -52,7 +50,6 @@
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="1dp"
             android:contentDescription="@string/movie_description_txt"
-            htmlTxt="@{vm.selectedVideo.snippet.description}"
             android:textColor="@color/colorPrimary"
             android:textSize="18sp"
             app:layout_constraintBottom_toTopOf="@+id/view_more"
@@ -144,7 +141,6 @@
             android:layout_marginBottom="8dp"
             android:textStyle="italic"
             android:textSize="18sp"
-            dateTxt="@{vm.selectedVideo.snippet.publishedAt}"
             app:layout_constraintBottom_toTopOf="@+id/comments_list"
             app:layout_constraintEnd_toStartOf="@+id/view_more"
             app:layout_constraintStart_toStartOf="@+id/descp"
