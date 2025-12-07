@@ -2,7 +2,8 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     id("kotlin-parcelize")
-    id("kotlin-kapt")
+    alias(libs.plugins.google.ksp)
+    alias(libs.plugins.android.hilt)
     alias(libs.plugins.safe.args.plugin)
 }
 
@@ -17,7 +18,7 @@ android {
         versionCode = 1
         versionName = "1.0"
 
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner = "di.CustomHiltTestRunner"
     }
 
     buildTypes {
@@ -61,7 +62,7 @@ dependencies {
     implementation (libs.androidx.room.runtime)
     implementation (libs.androidx.room.ktx)
     implementation (libs.androidx.paging.runtime)
-    kapt (libs.androidx.room.compiler)
+    ksp (libs.androidx.room.compiler)
 
     // Navigation
     implementation (libs.androidx.fragment.navigation)
@@ -74,7 +75,14 @@ dependencies {
 
     //Glide
     implementation (libs.bumptech.glide)
-    kapt (libs.bumptech.glide.compiler)
+    ksp (libs.bumptech.glide.compiler)
+
+    //DI
+    implementation (libs.android.hilt)
+    kspAndroidTest(libs.android.hilt.test)
+    androidTestImplementation (libs.android.hilt.test)
+    ksp (libs.hilt.android.compiler)
+
 
     // Assertions
     androidTestImplementation (libs.androidx.junit)

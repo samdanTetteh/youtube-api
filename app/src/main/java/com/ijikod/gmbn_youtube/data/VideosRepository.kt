@@ -8,6 +8,10 @@ import androidx.lifecycle.MutableLiveData
 import androidx.paging.*
 import com.ijikod.gmbn_youtube.app.GMBNApplication.Companion.appContext
 import com.ijikod.gmbn_youtube.data.Cache.VideoDatabase
+import com.ijikod.gmbn_youtube.data.models.Item
+import com.ijikod.gmbn_youtube.data.models.RemoteTokens
+import com.ijikod.gmbn_youtube.data.models.TopLevelComment
+import com.ijikod.gmbn_youtube.data.models.VideosData
 import com.ijikod.gmbn_youtube.data.modules.*
 import com.ijikod.gmbn_youtube.data.remote.API_KEY
 import com.ijikod.gmbn_youtube.data.remote.CHANNEL_ID
@@ -24,8 +28,8 @@ import java.lang.Exception
 class VideosRepository(private val service : VideosApiService, private val database: VideoDatabase) {
 
 
-    val videoDetailsData  = MutableLiveData<List<VideoItem>>()
-    val videoCommentsData = MutableLiveData<List<TopLevelComment>>()
+    val videoDetailsData  = MutableLiveData<List<VideoItem>?>()
+    val videoCommentsData = MutableLiveData<List<TopLevelComment>?>()
 
     lateinit var videoListData : LiveData<PagedList<Item>>
     lateinit var networkErrors : LiveData<String>
@@ -119,8 +123,8 @@ class VideosRepository(private val service : VideosApiService, private val datab
 
     @WorkerThread
     suspend fun getVideosFromNetwork(pageToken: String,
-        onSuccess: (videos: VideosData) -> Unit,
-        onError: (error: String) -> Unit
+                                     onSuccess: (videos: VideosData) -> Unit,
+                                     onError: (error: String) -> Unit
     ) {
         if (networkAvailable().not()){
             onError("IO Error")

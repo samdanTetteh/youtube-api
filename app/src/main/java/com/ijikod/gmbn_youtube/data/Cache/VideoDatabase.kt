@@ -6,6 +6,7 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import com.ijikod.gmbn_youtube.data.models.*
+import com.ijikod.gmbn_youtube.data.modules.VideoItem
 
 /**
  * Room Database initialisation to save data locally

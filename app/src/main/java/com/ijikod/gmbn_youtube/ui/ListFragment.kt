@@ -14,10 +14,11 @@ import androidx.navigation.fragment.findNavController
 import androidx.paging.PagedList
 import com.ijikod.gmbn_youtube.Injection
 import com.ijikod.gmbn_youtube.R
+import com.ijikod.gmbn_youtube.data.models.Item
 import com.ijikod.gmbn_youtube.databinding.FragmentListBinding
-import com.ijikod.gmbn_youtube.data.modules.Item
+import com.ijikod.gmbn_youtube.presentation.VideoDetailsViewModel
+import com.ijikod.gmbn_youtube.ui.Fragments.ListFragmentDirections
 import com.ijikod.gmbn_youtube.ui.adapters.VideoListAdapter
-import com.ijikod.gmbn_youtube.vm.VideoDetailsViewModel
 import com.ijikod.gmbn_youtube.vm.VideosListViewModel
 import kotlinx.coroutines.Job
 
@@ -70,7 +71,7 @@ class ListFragment : Fragment() {
                 sharedViewModel = ViewModelProvider(requireActivity(), Injection.provideViewModelFactory(requireActivity()))
                     .get(VideoDetailsViewModel::class.java)
 
-                sharedViewModel.setSelectedVideo(video)
+//                sharedViewModel.setSelectedVideo(video)
                 val action = ListFragmentDirections.actionListFragmentToDetailsFragment()
                 findNavController().navigate(action)
             }

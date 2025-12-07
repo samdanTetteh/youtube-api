@@ -27,7 +27,6 @@
 
             <ImageView
                 android:id="@+id/imageView"
-                imageUrl="@{vm.selectedVideo.snippet.thumbnails.high.url}"
                 android:layout_width="0dp"
                 android:layout_height="300dp"
                 android:contentDescription="@string/video_img"
@@ -132,7 +131,6 @@
                 android:layout_height="wrap_content"
                 android:textStyle="italic"
                 android:textSize="18sp"
-                dateTxt="@{vm.selectedVideo.snippet.publishedAt}"
                 app:layout_constraintBottom_toTopOf="@+id/duration__Lbl"
                 app:layout_constraintEnd_toStartOf="@+id/view_more"
                 app:layout_constraintStart_toStartOf="@+id/descp"
